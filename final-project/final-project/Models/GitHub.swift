@@ -1,212 +1,191 @@
+
 import Foundation
 
-struct GitHub: Codable{
-    let total_count: Int
-    let incomplete_results: Bool
+// MARK: - Welcome
+struct GitHub: Codable {
+    let totalCount: Int
+    let incompleteResults: Bool
     let items: [Item]
+
+    enum CodingKeys: String, CodingKey {
+        case totalCount = "total_count"
+        case incompleteResults = "incomplete_results"
+        case items
+    }
 }
 
+// MARK: - Item
+struct Item: Codable {
+    let id: Int
+    let nodeID, name, fullName: String
+    let itemPrivate: Bool
+    let owner: Owner
+    let htmlURL: String
+    let description: String??
+    let fork: Bool
+    let url, forksURL: String
+    let keysURL, collaboratorsURL: String
+    let teamsURL, hooksURL: String
+    let issueEventsURL: String
+    let eventsURL: String
+    let assigneesURL, branchesURL: String
+    let tagsURL: String
+    let blobsURL, gitTagsURL, gitRefsURL, treesURL: String
+    let statusesURL: String
+    let languagesURL, stargazersURL, contributorsURL, subscribersURL: String
+    let subscriptionURL: String
+    let commitsURL, gitCommitsURL, commentsURL, issueCommentURL: String
+    let contentsURL, compareURL: String
+    let mergesURL: String
+    let archiveURL: String
+    let downloadsURL: String
+    let issuesURL, pullsURL, milestonesURL, notificationsURL: String
+    let labelsURL, releasesURL: String
+    let deploymentsURL: String
+    let createdAt, updatedAt, pushedAt: String
+    let gitURL, sshURL: String
+    let cloneURL: String
+    let svnURL: String
+    let homepage: String??
+    let size, stargazersCount, watchersCount: Int
+    let language: String
+    let hasIssues, hasProjects, hasDownloads, hasWiki: Bool
+    let hasPages: Bool
+    let forksCount: Int
+    let mirrorURL: String??
+    let archived, disabled: Bool
+    let openIssuesCount: Int
+    let license: License??
+    let allowForking, isTemplate: Bool
+    let topics: [String]
+    let visibility: String
+    let forks, openIssues, watchers: Int
+    let defaultBranch: String
+    let score: Int
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case nodeID = "node_id"
+        case name
+        case fullName = "full_name"
+        case itemPrivate = "private"
+        case owner
+        case htmlURL = "html_url"
+        case description = "description"
+        case fork, url
+        case forksURL = "forks_url"
+        case keysURL = "keys_url"
+        case collaboratorsURL = "collaborators_url"
+        case teamsURL = "teams_url"
+        case hooksURL = "hooks_url"
+        case issueEventsURL = "issue_events_url"
+        case eventsURL = "events_url"
+        case assigneesURL = "assignees_url"
+        case branchesURL = "branches_url"
+        case tagsURL = "tags_url"
+        case blobsURL = "blobs_url"
+        case gitTagsURL = "git_tags_url"
+        case gitRefsURL = "git_refs_url"
+        case treesURL = "trees_url"
+        case statusesURL = "statuses_url"
+        case languagesURL = "languages_url"
+        case stargazersURL = "stargazers_url"
+        case contributorsURL = "contributors_url"
+        case subscribersURL = "subscribers_url"
+        case subscriptionURL = "subscription_url"
+        case commitsURL = "commits_url"
+        case gitCommitsURL = "git_commits_url"
+        case commentsURL = "comments_url"
+        case issueCommentURL = "issue_comment_url"
+        case contentsURL = "contents_url"
+        case compareURL = "compare_url"
+        case mergesURL = "merges_url"
+        case archiveURL = "archive_url"
+        case downloadsURL = "downloads_url"
+        case issuesURL = "issues_url"
+        case pullsURL = "pulls_url"
+        case milestonesURL = "milestones_url"
+        case notificationsURL = "notifications_url"
+        case labelsURL = "labels_url"
+        case releasesURL = "releases_url"
+        case deploymentsURL = "deployments_url"
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
+        case pushedAt = "pushed_at"
+        case gitURL = "git_url"
+        case sshURL = "ssh_url"
+        case cloneURL = "clone_url"
+        case svnURL = "svn_url"
+        case homepage, size
+        case stargazersCount = "stargazers_count"
+        case watchersCount = "watchers_count"
+        case language
+        case hasIssues = "has_issues"
+        case hasProjects = "has_projects"
+        case hasDownloads = "has_downloads"
+        case hasWiki = "has_wiki"
+        case hasPages = "has_pages"
+        case forksCount = "forks_count"
+        case mirrorURL = "mirror_url"
+        case archived, disabled
+        case openIssuesCount = "open_issues_count"
+        case license
+        case allowForking = "allow_forking"
+        case isTemplate = "is_template"
+        case topics, visibility, forks
+        case openIssues = "open_issues"
+        case watchers
+        case defaultBranch = "default_branch"
+        case score
+    }
+}
+
+// MARK: - License
+struct License: Codable {
+    let key, name, spdxID: String
+    let url: String??
+    let nodeID: String
+
+    enum CodingKeys: String, CodingKey {
+        case key, name
+        case spdxID = "spdx_id"
+        case url
+        case nodeID = "node_id"
+    }
+}
+
+// MARK: - Owner
 struct Owner: Codable {
     let login: String
     let id: Int
-    let nodeId: String
-    let avatarUrl: String
-    let gravatarId: String
-    let url: String
-    let htmlUrl: String
-    let followersUrl: String
-    let followingUrl: String
-    let gistsUrl: String
-    let starredUrl: String
-    let subscriptionsUrl: String
-    let organizationsUrl: String
-    let reposUrl: String
-    let eventsUrl: String
-    let receivedEventsUrl: String
+    let nodeID: String
+    let avatarURL: String
+    let gravatarID: String
+    let url, htmlURL, followersURL: String
+    let followingURL, gistsURL, starredURL: String
+    let subscriptionsURL, organizationsURL, reposURL: String
+    let eventsURL: String
+    let receivedEventsURL: String
     let type: String
     let siteAdmin: Bool
+
+    enum CodingKeys: String, CodingKey {
+        case login, id
+        case nodeID = "node_id"
+        case avatarURL = "avatar_url"
+        case gravatarID = "gravatar_id"
+        case url
+        case htmlURL = "html_url"
+        case followersURL = "followers_url"
+        case followingURL = "following_url"
+        case gistsURL = "gists_url"
+        case starredURL = "starred_url"
+        case subscriptionsURL = "subscriptions_url"
+        case organizationsURL = "organizations_url"
+        case reposURL = "repos_url"
+        case eventsURL = "events_url"
+        case receivedEventsURL = "received_events_url"
+        case type
+        case siteAdmin = "site_admin"
+    }
 }
-
-struct License : Codable {
-      let key : String
-      let name : String
-      let spdx_id : String
-      let url :String
-      let nodeId : String
-}
-
-struct  Item : Codable{
-    let id: Int
-    let node_id: String
-    let name: String
-    let fullName: String
-    let privates: Bool
-    let owner: Owner
-    let htmlUrl: String
-    let description: String
-    let fork: Bool
-    let url: String
-    let forksUrl: String
-    let keysUrl: String
-    let collaboratorsUrl: String
-    let teamsUrl: String
-    let hooksUrl: String
-    let issueEventsUrl: String
-    let eventsUrl: String
-    let assigneesUrl: String
-    let branchesUrl: String
-    let tagsUrl: String
-    let blobsUrl: String
-    let gitTagsUrl: String
-    let gitRefsUrl: String
-    let treesUrl: String
-    let statusesUrl: String
-    let languagesUrl: String
-    let stargazersUrl: String
-    let contributorsUrl: String
-    let subscribersUrl: String
-    let subscriptionUrl: String
-    let commitsUrl: String
-    let gitCommitsUrl: String
-    let commecntsUrl : String
-    let issueommentUrl : String
-    let contentsUrl: String
-    let compareUrl : String
-    let archiveUrl : String
-    let downloadsUrl : String
-    let issuesUrl : String
-    let pullsUrl : String
-    let milestonesUrl: String
-    let notificationsUrl  : String
-    let labelsUrl : String
-    let releasesUrl: String
-    let deploymentsUrl : String
-    let createdAt : String
-    let updatedAt : String
-    let pushedAt : String
-    let gitUrl : String
-    let sshUrl :String
-    let cloneUrl : String
-    let svnUrl : String
-    let homepage : String
-    let size : Int
-    let stargazersCount : Int
-    let watchersCount : Int
-    let language : String
-    let hasIssues : Bool
-    let hasProjects : Bool
-    let hasDownloads : Bool
-    let hasWiki : Bool
-    let hasPages : Bool
-    let forksCount : Int
-    let mirrorUrl : String
-    let archived : Bool
-    let disabled : Bool
-    let openIssuesCount : Int
-    let license : License
-    let allowForking : Bool
-    let isTemplate : Bool
-    let topics : [String]
-    let visibility : String
-    let forks : Int
-    let openIssues : Int
-    let watchers : Int
-    let defaultBranch : String
-    let score : Int
-}
-
-
-enum CodingKeys: String, CodingKey {
-    case privates = "private"
-    case totalCount = "total_count"
-    case incompleteResults = "incomplete_results"
-    case items
-    case login
-    case id
-    case nodeId = "node_id"
-    case avatarUrl = "avatar_url"
-    case gravatarId = "gravatar_id"
-    case url
-    case htmlUrl = "html_url"
-    case followersUrl = "followers_url"
-    case followingUrl = "following_url"
-    case gistsUrl = "gists_url"
-    case starredUrl = "starred_url"
-    case subscriptionsUrl = "subscriptions_url"
-    case organizationsUrl = "organizations_url"
-    case reposUrl = "repos_url"
-    case eventsUrl = "events_url"
-    case receivedEventsUrl = "received_events_url"
-    case type
-    case siteAdmin = "site_admin"
-    case key
-    case name
-    case spdx_id
-    case fullName = "full_name"
-    case owner
-    case fork
-    case collaboratorsUrl="collaborators_url"
-    case teamsUrl = "teams_url"
-    case hooksUrl = "hooks_url"
-    case issueEventsUrl = "issue_Events_Url"
-    case assigneesUrl = "assignees_url"
-    case branchesUrl = "branches_url"
-    case tagsUrl = "tags_url"
-    case blobsUrl = "blobs_url"
-    case gitTagsUrl = "git_tags_url"
-    case gitRefsUrl  = "git_refs_url"
-    case treesUrl  = "trees_url"
-    case statusesUrl = "statuses_url"
-    case languagesUrl  = "languages_url"
-    case stargazersUrl = "stargazers_url"
-    case contributorsUrl = "contributors_url"
-    case subscribersUrl = "subscribersUrl"
-    case subscriptionUrl  = "subscriptionUrl"
-    case commitsUrl = "commits_url"
-    case gitCommitsUrl  = "git_commits_url"
-    case commentsUrl = "comments_url"
-    case issueCommentUrl  = "issue_comment_url"
-    case contentsUrl = "contents_url"
-    case compareUrl  = "compare_url"
-    case archiveUrl  = "archive_url"
-    case downloadsUrl   = "downloads_url"
-    case issuesUrl = "issues_url"
-    case pullsUrl = "pulls_url"
-    case milestonesUrl = "milestones_url"
-    case notificationsUrl = "notifications_url"
-    case labelsUrl = "labels_url"
-    case releasesUrl = "releases_url"
-    case deploymentsUrl = "deployments_url"
-    case createdAt  = "created_at"
-    case updatedAt  = "updated_at"
-    case pushedAt   = "pushed_at"
-    case gitUrl = "git_url"
-    case sshUrl = "ssh_url"
-    case cloneUrl = "clone_url"
-    case svnUrl = "svn_url"
-    case homepage
-    case size
-    case stargazersCount =  "stargazers_count"
-    case watchersCount = "watchers_count"
-    case language
-    case hasIssues = "has_issues"
-    case hasProjects = "has_projects"
-    case hasDownloads = "has_downloads"
-    case hasWiki = "has_wiki"
-    case hasPages = "has_pages"
-    case forksCount = "forks_count"
-    case mirrorUrl  = "mirror_url"
-    case archived
-    case disabled
-    case openIssuesCount = "open_issues_count"
-    case license
-    case allowForking = "allow_forking"
-    case isTemplate  = "is_template"
-    case topics
-    case visibility
-    case forks
-    case openIssues = "open_issues"
-    case watchers
-    case defaultBranch  = "default_branch"
-    case score
-   }
