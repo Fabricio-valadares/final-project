@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import SwiftUI
 
 class ViewController: UIViewController {
-    
-    private var repos = [Item](){
+
+        private var repos = [Item](){
         didSet{
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -21,7 +22,7 @@ class ViewController: UIViewController {
         let tableView = UITableView(frame: .zero, style: .plain )
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.isScrollEnabled = false
+        tableView.isScrollEnabled = true
         tableView.delegate = self
         tableView.dataSource = self
     
@@ -77,7 +78,9 @@ extension ViewController:UITableViewDelegate,UITableViewDataSource {
         cell.setup(with: repo)
         return cell
     }
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 130
+    }
     
 }
 

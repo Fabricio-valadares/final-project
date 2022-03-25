@@ -31,7 +31,6 @@ class CustomTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier:reuseIdentifier)
-        contentView.backgroundColor = .orange
         contentView.addSubview(repoimage)
         contentView.addSubview(repoName)
         contentView.addSubview(repoDescription)
@@ -43,11 +42,9 @@ class CustomTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        
-        repoName.frame = CGRect(x: 8, y: 8, width: contentView.frame.size.width, height: (contentView.frame.size.height/2))
-        repoDescription.frame = CGRect(x:8 , y: 16, width: contentView.frame.size.width, height: (contentView.frame.size.height/2))
-        repoimage.frame = CGRect(x: 8, y: 8, width: contentView.frame.size.width, height: (contentView.frame.size.height/2))
+        repoName.frame = CGRect(x: 116, y: 8, width: contentView.frame.size.width, height:20)
+        repoDescription.frame = CGRect(x:116 , y: 28, width: contentView.frame.size.width, height:20)
+        repoimage.frame = CGRect(x: 8, y: 8, width: 100, height: (contentView.frame.size.height))
 
     }
     
