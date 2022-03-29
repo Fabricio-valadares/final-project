@@ -12,9 +12,12 @@
 		34F3D1C727EE21EF00B768A1 /* FetchGitHubServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F3D1C627EE21EF00B768A1 /* FetchGitHubServices.swift */; };
 		34F3D1CA27EE222F00B768A1 /* FetchGitHubProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F3D1C927EE222F00B768A1 /* FetchGitHubProtocol.swift */; };
 		34F3D1CC27EE26C300B768A1 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F3D1CB27EE26C300B768A1 /* CustomTableViewCell.swift */; };
+		48C6CE2A27F281FC00FD7BBB /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C6CE2927F281FC00FD7BBB /* MainTabBar.swift */; };
+		48C6CE2C27F2835F00FD7BBB /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C6CE2B27F2835F00FD7BBB /* FavoritesViewController.swift */; };
+		48C6CE2E27F2836A00FD7BBB /* SquadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C6CE2D27F2836A00FD7BBB /* SquadViewController.swift */; };
 		9F69A3F927ED32A6006517E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F69A3F827ED32A6006517E5 /* AppDelegate.swift */; };
 		9F69A3FB27ED32A6006517E5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F69A3FA27ED32A6006517E5 /* SceneDelegate.swift */; };
-		9F69A3FD27ED32A6006517E5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F69A3FC27ED32A6006517E5 /* ViewController.swift */; };
+		9F69A3FD27ED32A6006517E5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F69A3FC27ED32A6006517E5 /* HomeViewController.swift */; };
 		9F69A40327ED32A6006517E5 /* final_project.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9F69A40127ED32A6006517E5 /* final_project.xcdatamodeld */; };
 		9F69A40527ED32A8006517E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F69A40427ED32A8006517E5 /* Assets.xcassets */; };
 		9F69A40827ED32A8006517E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F69A40627ED32A8006517E5 /* LaunchScreen.storyboard */; };
@@ -26,10 +29,13 @@
 		34F3D1C627EE21EF00B768A1 /* FetchGitHubServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchGitHubServices.swift; sourceTree = "<group>"; };
 		34F3D1C927EE222F00B768A1 /* FetchGitHubProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchGitHubProtocol.swift; sourceTree = "<group>"; };
 		34F3D1CB27EE26C300B768A1 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		48C6CE2927F281FC00FD7BBB /* MainTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
+		48C6CE2B27F2835F00FD7BBB /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		48C6CE2D27F2836A00FD7BBB /* SquadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquadViewController.swift; sourceTree = "<group>"; };
 		9F69A3F527ED32A6006517E5 /* final-project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "final-project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F69A3F827ED32A6006517E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F69A3FA27ED32A6006517E5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9F69A3FC27ED32A6006517E5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9F69A3FC27ED32A6006517E5 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		9F69A40227ED32A6006517E5 /* final_project.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = final_project.xcdatamodel; sourceTree = "<group>"; };
 		9F69A40427ED32A8006517E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F69A40727ED32A8006517E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -82,6 +88,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		48C6CE2827F281C200FD7BBB /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				48C6CE2927F281FC00FD7BBB /* MainTabBar.swift */,
+				9F69A3FC27ED32A6006517E5 /* HomeViewController.swift */,
+				48C6CE2B27F2835F00FD7BBB /* FavoritesViewController.swift */,
+				48C6CE2D27F2836A00FD7BBB /* SquadViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		9F69A3EC27ED32A6006517E5 = {
 			isa = PBXGroup;
 			children = (
@@ -103,12 +120,12 @@
 		9F69A3F727ED32A6006517E5 /* final-project */ = {
 			isa = PBXGroup;
 			children = (
+				48C6CE2827F281C200FD7BBB /* Controllers */,
 				34F3D1C827EE220C00B768A1 /* Protocols */,
 				346891CD27EE0B4B001D45DB /* Services */,
 				346891CA27ED3629001D45DB /* Models */,
 				9F69A3F827ED32A6006517E5 /* AppDelegate.swift */,
 				9F69A3FA27ED32A6006517E5 /* SceneDelegate.swift */,
-				9F69A3FC27ED32A6006517E5 /* ViewController.swift */,
 				9F69A40427ED32A8006517E5 /* Assets.xcassets */,
 				9F69A40627ED32A8006517E5 /* LaunchScreen.storyboard */,
 				9F69A40927ED32A8006517E5 /* Info.plist */,
@@ -241,13 +258,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48C6CE2A27F281FC00FD7BBB /* MainTabBar.swift in Sources */,
 				346891CC27ED3692001D45DB /* GitHub.swift in Sources */,
 				34F3D1CA27EE222F00B768A1 /* FetchGitHubProtocol.swift in Sources */,
 				34F3D1CC27EE26C300B768A1 /* CustomTableViewCell.swift in Sources */,
-				9F69A3FD27ED32A6006517E5 /* ViewController.swift in Sources */,
+				9F69A3FD27ED32A6006517E5 /* HomeViewController.swift in Sources */,
 				9F69A3F927ED32A6006517E5 /* AppDelegate.swift in Sources */,
 				9F69A40327ED32A6006517E5 /* final_project.xcdatamodeld in Sources */,
 				9F69A3FB27ED32A6006517E5 /* SceneDelegate.swift in Sources */,
+				48C6CE2C27F2835F00FD7BBB /* FavoritesViewController.swift in Sources */,
+				48C6CE2E27F2836A00FD7BBB /* SquadViewController.swift in Sources */,
 				34F3D1C727EE21EF00B768A1 /* FetchGitHubServices.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

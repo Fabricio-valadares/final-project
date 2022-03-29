@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI
 
-class ViewController: UIViewController {
+class HomeViewController: UIViewController {
 
         private var repos = [Item](){
         didSet{
@@ -65,7 +65,7 @@ class ViewController: UIViewController {
 }
 
 
-extension ViewController:UITableViewDelegate,UITableViewDataSource {
+extension HomeViewController:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return repos.count
     }
