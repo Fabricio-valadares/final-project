@@ -21,6 +21,8 @@
 		9F69A40327ED32A6006517E5 /* final_project.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9F69A40127ED32A6006517E5 /* final_project.xcdatamodeld */; };
 		9F69A40527ED32A8006517E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F69A40427ED32A8006517E5 /* Assets.xcassets */; };
 		9F69A40827ED32A8006517E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F69A40627ED32A8006517E5 /* LaunchScreen.storyboard */; };
+		9FF6E16927F2881100820C26 /* CustomTableViewUserDevelopersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF6E16827F2881100820C26 /* CustomTableViewUserDevelopersCell.swift */; };
+		9FF6E16B27F2885A00820C26 /* ContactDevelopers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF6E16A27F2885A00820C26 /* ContactDevelopers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		9F69A40427ED32A8006517E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F69A40727ED32A8006517E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F69A40927ED32A8006517E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9FF6E16827F2881100820C26 /* CustomTableViewUserDevelopersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewUserDevelopersCell.swift; sourceTree = "<group>"; };
+		9FF6E16A27F2885A00820C26 /* ContactDevelopers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDevelopers.swift; sourceTree = "<group>"; };
 		F0214F0762896CD751C69C75 /* Pods_final_project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_final_project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAF3282D7BBB5822420D2B18 /* Pods-final-project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-final-project.release.xcconfig"; path = "Target Support Files/Pods-final-project/Pods-final-project.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -95,6 +99,7 @@
 				9F69A3FC27ED32A6006517E5 /* HomeViewController.swift */,
 				48C6CE2B27F2835F00FD7BBB /* FavoritesViewController.swift */,
 				48C6CE2D27F2836A00FD7BBB /* SquadViewController.swift */,
+				9FF6E16A27F2885A00820C26 /* ContactDevelopers.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -120,6 +125,7 @@
 		9F69A3F727ED32A6006517E5 /* final-project */ = {
 			isa = PBXGroup;
 			children = (
+				9FF6E16727F287E000820C26 /* Cell */,
 				48C6CE2827F281C200FD7BBB /* Controllers */,
 				34F3D1C827EE220C00B768A1 /* Protocols */,
 				346891CD27EE0B4B001D45DB /* Services */,
@@ -133,6 +139,14 @@
 				34F3D1CB27EE26C300B768A1 /* CustomTableViewCell.swift */,
 			);
 			path = "final-project";
+			sourceTree = "<group>";
+		};
+		9FF6E16727F287E000820C26 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				9FF6E16827F2881100820C26 /* CustomTableViewUserDevelopersCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		D9596A6DA3DEAF11E490AC28 /* Pods */ = {
@@ -261,7 +275,9 @@
 				48C6CE2A27F281FC00FD7BBB /* MainTabBar.swift in Sources */,
 				346891CC27ED3692001D45DB /* GitHub.swift in Sources */,
 				34F3D1CA27EE222F00B768A1 /* FetchGitHubProtocol.swift in Sources */,
+				9FF6E16B27F2885A00820C26 /* ContactDevelopers.swift in Sources */,
 				34F3D1CC27EE26C300B768A1 /* CustomTableViewCell.swift in Sources */,
+				9FF6E16927F2881100820C26 /* CustomTableViewUserDevelopersCell.swift in Sources */,
 				9F69A3FD27ED32A6006517E5 /* HomeViewController.swift in Sources */,
 				9F69A3F927ED32A6006517E5 /* AppDelegate.swift in Sources */,
 				9F69A40327ED32A6006517E5 /* final_project.xcdatamodeld in Sources */,
