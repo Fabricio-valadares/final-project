@@ -96,7 +96,7 @@ class UserDeveloperTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setup(with data: DataDevelopers){
+    func setup(with data: Developers){
         
         nameDeveloper.text = data.name
         textOccupation.text = data.occupation

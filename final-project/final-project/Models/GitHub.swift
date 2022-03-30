@@ -55,7 +55,7 @@ struct Item: Codable {
     let mirrorURL: String??
     let archived, disabled: Bool
     let openIssuesCount: Int
-    let license: License??
+    let license: License?
     let allowForking, isTemplate: Bool
     let topics: [String]
     let visibility: String

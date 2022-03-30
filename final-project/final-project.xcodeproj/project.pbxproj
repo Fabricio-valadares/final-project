@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		0D4CFED8F3041EAF5B7D2B76 /* Pods_final_project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0214F0762896CD751C69C75 /* Pods_final_project.framework */; };
 		346891CC27ED3692001D45DB /* GitHub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346891CB27ED3692001D45DB /* GitHub.swift */; };
+		349AC3CF27F28FA7002E19DD /* RepoviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349AC3CE27F28FA7002E19DD /* RepoviewController.swift */; };
+		349AC3D427F353A5002E19DD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349AC3D327F353A5002E19DD /* Extensions.swift */; };
+		349AC3D627F39F65002E19DD /* Developers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349AC3D527F39F65002E19DD /* Developers.swift */; };
 		34F3D1C727EE21EF00B768A1 /* FetchGitHubServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F3D1C627EE21EF00B768A1 /* FetchGitHubServices.swift */; };
 		34F3D1CA27EE222F00B768A1 /* FetchGitHubProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F3D1C927EE222F00B768A1 /* FetchGitHubProtocol.swift */; };
 		34F3D1CC27EE26C300B768A1 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F3D1CB27EE26C300B768A1 /* CustomTableViewCell.swift */; };
@@ -28,6 +31,9 @@
 /* Begin PBXFileReference section */
 		1C97FB43670A09F0271FF125 /* Pods-final-project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-final-project.debug.xcconfig"; path = "Target Support Files/Pods-final-project/Pods-final-project.debug.xcconfig"; sourceTree = "<group>"; };
 		346891CB27ED3692001D45DB /* GitHub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHub.swift; sourceTree = "<group>"; };
+		349AC3CE27F28FA7002E19DD /* RepoviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoviewController.swift; sourceTree = "<group>"; };
+		349AC3D327F353A5002E19DD /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		349AC3D527F39F65002E19DD /* Developers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Developers.swift; sourceTree = "<group>"; };
 		34F3D1C627EE21EF00B768A1 /* FetchGitHubServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchGitHubServices.swift; sourceTree = "<group>"; };
 		34F3D1C927EE222F00B768A1 /* FetchGitHubProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchGitHubProtocol.swift; sourceTree = "<group>"; };
 		34F3D1CB27EE26C300B768A1 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
@@ -64,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				346891CB27ED3692001D45DB /* GitHub.swift */,
+				349AC3D527F39F65002E19DD /* Developers.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -74,6 +81,14 @@
 				34F3D1C627EE21EF00B768A1 /* FetchGitHubServices.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		349AC3D027F3530D002E19DD /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				349AC3D327F353A5002E19DD /* Extensions.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		34F3D1C827EE220C00B768A1 /* Protocols */ = {
@@ -95,11 +110,13 @@
 		48C6CE2827F281C200FD7BBB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9FF6E16727F287E000820C26 /* CustomCells */,
 				48C6CE2927F281FC00FD7BBB /* MainTabBar.swift */,
 				9F69A3FC27ED32A6006517E5 /* HomeViewController.swift */,
 				48C6CE2B27F2835F00FD7BBB /* FavoritesViewController.swift */,
 				48C6CE2D27F2836A00FD7BBB /* SquadViewController.swift */,
 				9FF6E16A27F2885A00820C26 /* ContactDevelopers.swift */,
+				349AC3CE27F28FA7002E19DD /* RepoviewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -125,7 +142,7 @@
 		9F69A3F727ED32A6006517E5 /* final-project */ = {
 			isa = PBXGroup;
 			children = (
-				9FF6E16727F287E000820C26 /* Cell */,
+				349AC3D027F3530D002E19DD /* Utils */,
 				48C6CE2827F281C200FD7BBB /* Controllers */,
 				34F3D1C827EE220C00B768A1 /* Protocols */,
 				346891CD27EE0B4B001D45DB /* Services */,
@@ -136,17 +153,17 @@
 				9F69A40627ED32A8006517E5 /* LaunchScreen.storyboard */,
 				9F69A40927ED32A8006517E5 /* Info.plist */,
 				9F69A40127ED32A6006517E5 /* final_project.xcdatamodeld */,
-				34F3D1CB27EE26C300B768A1 /* CustomTableViewCell.swift */,
 			);
 			path = "final-project";
 			sourceTree = "<group>";
 		};
-		9FF6E16727F287E000820C26 /* Cell */ = {
+		9FF6E16727F287E000820C26 /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
+				34F3D1CB27EE26C300B768A1 /* CustomTableViewCell.swift */,
 				9FF6E16827F2881100820C26 /* CustomTableViewUserDevelopersCell.swift */,
 			);
-			path = Cell;
+			path = CustomCells;
 			sourceTree = "<group>";
 		};
 		D9596A6DA3DEAF11E490AC28 /* Pods */ = {
@@ -272,15 +289,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				349AC3CF27F28FA7002E19DD /* RepoviewController.swift in Sources */,
 				48C6CE2A27F281FC00FD7BBB /* MainTabBar.swift in Sources */,
 				346891CC27ED3692001D45DB /* GitHub.swift in Sources */,
 				34F3D1CA27EE222F00B768A1 /* FetchGitHubProtocol.swift in Sources */,
+				349AC3D627F39F65002E19DD /* Developers.swift in Sources */,
 				9FF6E16B27F2885A00820C26 /* ContactDevelopers.swift in Sources */,
 				34F3D1CC27EE26C300B768A1 /* CustomTableViewCell.swift in Sources */,
 				9FF6E16927F2881100820C26 /* CustomTableViewUserDevelopersCell.swift in Sources */,
 				9F69A3FD27ED32A6006517E5 /* HomeViewController.swift in Sources */,
 				9F69A3F927ED32A6006517E5 /* AppDelegate.swift in Sources */,
 				9F69A40327ED32A6006517E5 /* final_project.xcdatamodeld in Sources */,
+				349AC3D427F353A5002E19DD /* Extensions.swift in Sources */,
 				9F69A3FB27ED32A6006517E5 /* SceneDelegate.swift in Sources */,
 				48C6CE2C27F2835F00FD7BBB /* FavoritesViewController.swift in Sources */,
 				48C6CE2E27F2836A00FD7BBB /* SquadViewController.swift in Sources */,

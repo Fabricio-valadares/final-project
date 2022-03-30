@@ -1,9 +1,3 @@
-//
-//  MainTabBar.swift
-//  final-project
-//
-//  Created by Giovanna Moeller on 28/03/22.
-//
 
 import UIKit
 
