@@ -1,57 +1,59 @@
 
 import UIKit
 
-struct DataDevelopers {
-    var name: String
-    var occupation: String
-    var phone: String
-    var email: String
-    var linkedin: String
-    var twitter: String
-    var profile: String
-}
-
 
 class SquadViewController: UIViewController {
-    lazy var tableView: UITableView = {
-        let table = UITableView(frame: .zero, style: .plain)
-        
-        table.register(UserDeveloperTableViewCell.self, forCellReuseIdentifier: UserDeveloperTableViewCell.identifier)
-        table.delegate = self
-        table.dataSource = self
-        table.translatesAutoresizingMaskIntoConstraints = false
-        
-        return table
-    }()
-
+    //MARK: - Atributes
     
-    var users: [DataDevelopers] = []
+    lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .plain )
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.isScrollEnabled = true
+        tableView.separatorStyle = .none
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
+        tableView.rowHeight = 101
 
+        return tableView
+    }()
+    var users: [Developers] = []
+    
+    
+    
+    //MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         title = "Time"
-        
-        users = [DataDevelopers(name: "Pamella Lima", occupation: "Ocupação", phone: "(00)00000-0000", email: "funalo@mail.com", linkedin: "https://dominio.com.br", twitter: "user123", profile: "https://avatars.githubusercontent.com/u/45980325?v=4"), DataDevelopers(name: "Miller César", occupation: "Ocupação", phone: "(00)00000-0000", email: "funalo@mail.com", linkedin: "https://dominio.com.br", twitter: "user123", profile: "https://avatars.githubusercontent.com/u/20051554?v=4"),DataDevelopers(name: "Fabricio Valadares", occupation: "Full-Stack Developer", phone: "(00)00000-0000", email: "funalo@mail.com", linkedin: "https://dominio.com.br", twitter: "user123", profile: "https://avatars.githubusercontent.com/u/63164587?v=4"), DataDevelopers(name: "Giovanna", occupation: "Ocupação", phone: "(00)00000-0000", email: "funalo@mail.com", linkedin: "https://dominio.com.br", twitter: "user123", profile: "https://avatars.githubusercontent.com/u/47362960?v=4"), DataDevelopers(name: "Melquias Ribeiro", occupation: "Ocupação", phone: "(00)00000-0000", email: "funalo@mail.com", linkedin: "https://dominio.com.br", twitter: "user123", profile: "https://avatars.githubusercontent.com/u/54459438?v=4"), DataDevelopers(name: "Felipe Brigagão", occupation: "Ocupação", phone: "(00)00000-0000", email: "funalo@mail.com", linkedin: "https://dominio.com.br", twitter: "user123", profile: "https://avatars.githubusercontent.com/u/30760595?v=4")]
-        
-        tableView.rowHeight = 85
-        
+        users = [Developers(name: "Pamella Lima", occupation: "Ocupação", phone: "(00)00000-0000", email: "funalo@mail.com", linkedin: "https://dominio.com.br", twitter: "user123", profile: "https://avatars.githubusercontent.com/u/45980325?v=4"), Developers(name: "Miller César", occupation: "Ocupação", phone: "(00)00000-0000", email: "funalo@mail.com", linkedin: "https://dominio.com.br", twitter: "user123", profile: "https://avatars.githubusercontent.com/u/20051554?v=4"),Developers(name: "Fabricio Valadares", occupation: "Full-Stack Developer", phone: "(00)00000-0000", email: "funalo@mail.com", linkedin: "https://dominio.com.br", twitter: "user123", profile: "https://avatars.githubusercontent.com/u/63164587?v=4"), Developers(name: "Giovanna", occupation: "Ocupação", phone: "(00)00000-0000", email: "funalo@mail.com", linkedin: "https://dominio.com.br", twitter: "user123", profile: "https://avatars.githubusercontent.com/u/47362960?v=4"), Developers(name: "Melquias Ribeiro", occupation: "Ocupação", phone: "(00)00000-0000", email: "funalo@mail.com", linkedin: "https://dominio.com.br", twitter: "user123", profile: "https://avatars.githubusercontent.com/u/54459438?v=4"), Developers(name: "Felipe Brigagão", occupation: "Ocupação", phone: "(00)00000-0000", email: "funalo@mail.com", linkedin: "https://dominio.com.br", twitter: "user123", profile: "https://avatars.githubusercontent.com/u/30760595?v=4")]
         view.addSubview(tableView)
         setupConstraints()
     }
-
+    
+    //MARK: - Helpers
+    
     private func setupConstraints() {
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
+        tableView.addConstraintsToFillView(view)
     }
 }
 
+    //MARK: - Tableview configuration
 
-extension SquadViewController: UITableViewDelegate {
+extension SquadViewController: UITableViewDataSource,UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return users.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as? CustomTableViewCell else { return UITableViewCell() }
+        
+        let user = users[indexPath.row]
+            
+        cell.setup(name: user.name, description: user.occupation, imageUrl: user.profile)
+        
+        return cell
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let showDeveloperContactViewController = ShowDeveloperContactViewController()
@@ -61,24 +63,6 @@ extension SquadViewController: UITableViewDelegate {
         } else {
             present(showDeveloperContactViewController, animated: true)
         }
-    }
-}
-
-extension SquadViewController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: UserDeveloperTableViewCell.identifier, for: indexPath) as? UserDeveloperTableViewCell else { return UITableViewCell() }
-        
-        let user = users[indexPath.row]
-        
-        cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: UIScreen.main.bounds.width)
-        
-        cell.setup(with: user)
-        
-        return cell
     }
     
     
