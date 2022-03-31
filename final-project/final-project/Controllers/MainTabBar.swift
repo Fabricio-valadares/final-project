@@ -11,9 +11,9 @@ class MainTabBar: UITabBarController {
   private func configureTabBar() {
     tabBar.tintColor = .black
     viewControllers = [
-      embedInNavigationController(vc: HomeViewController(), title: "Home", image: "house"),
-      embedInNavigationController(vc: FavoritesViewController(), title: "Favoritos", image: "star"),
-      embedInNavigationController(vc: SquadViewController(), title: "Time", image: "person.2"),
+      embedInNavigationController(vc: HomeController(), title: "Home", image: "house"),
+      embedInNavigationController(vc: FavoritesController(), title: "Favoritos", image: "star"),
+      embedInNavigationController(vc: SquadController(), title: "Time", image: "person.2"),
     ]
   }
   
