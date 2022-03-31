@@ -2,7 +2,7 @@
 import UIKit
 
 
-class SquadViewController: UIViewController {
+class SquadController: UIViewController {
     //MARK: - Atributes
     
     lazy var tableView: UITableView = {
@@ -40,7 +40,7 @@ class SquadViewController: UIViewController {
 
     //MARK: - Tableview configuration
 
-extension SquadViewController: UITableViewDataSource,UITableViewDelegate {
+extension SquadController: UITableViewDataSource,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users.count
@@ -56,7 +56,8 @@ extension SquadViewController: UITableViewDataSource,UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let showDeveloperContactViewController = ShowDeveloperContactViewController()
+        let developerDetails = users[indexPath.row]
+        let showDeveloperContactViewController = DevelopersDetilsController(developerPhoto: developerDetails.profile, developerName: developerDetails.name, developerPhone: developerDetails.phone, developerEmail: developerDetails.email, developerLinkedin: developerDetails.linkedin, developerTwitter: developerDetails.twitter)
         
         if let _ = navigationController {
             navigationController?.pushViewController(showDeveloperContactViewController, animated: true)

@@ -1,7 +1,7 @@
 import UIKit
 import SwiftUI
 
-class HomeViewController: UIViewController {
+class HomeController: UIViewController {
     
     //MARK: - Atributes
     
@@ -99,7 +99,7 @@ class HomeViewController: UIViewController {
 
 //MARK: - Tableview configuration
 
-extension HomeViewController:UITableViewDelegate,UITableViewDataSource {
+extension HomeController:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return repos.count
     }
@@ -118,16 +118,15 @@ extension HomeViewController:UITableViewDelegate,UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let repoDetails = repos[indexPath.row]
-        let RepoViewController = RepoViewController()
-        RepoViewController.setup(nomeRepo:repoDetails.name,imagem: repoDetails.owner.avatarURL, nomeAutor: repoDetails.owner.login, contObservadores: String(repoDetails.watchersCount), dataCriacao: repoDetails.createdAt, licenca: repoDetails.url, link: repoDetails.url)
-        navigationController?.pushViewController(RepoViewController, animated: true)
+        let repoDetailsController = RepoDetailsController(repoName: repoDetails.name, imagem: repoDetails.owner.avatarURL, authorName: repoDetails.owner.login, numberOfViewers: String(repoDetails.watchersCount), createdAt: repoDetails.createdAt, license: repoDetails.url, repoLink: repoDetails.url)
+        navigationController?.pushViewController(repoDetailsController, animated: true)
         
     }
     
 }
 
 
-extension HomeViewController: UISearchBarDelegate {
+extension HomeController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let serched = searchBar.text {
             print(serched)

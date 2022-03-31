@@ -3,15 +3,32 @@ import UIKit
 import Kingfisher
 import SwiftUI
 
-class RepoViewController: UIViewController {
+class RepoDetailsController: UIViewController {
     
     //MARK: - Properties
 
-    var authorName = ""
-    var numberOfViewers = ""
-    var createdAt = ""
-    var license = ""
-    var repoLink = ""
+    private let authorName:String
+    private let numberOfViewers :String
+    private let createdAt :String
+    private let license:String
+    private let repoLink :String
+    
+    init (repoName:String, imagem: String, authorName: String, numberOfViewers: String, createdAt: String, license: String, repoLink: String){
+        self.authorName = authorName
+        self.numberOfViewers = numberOfViewers
+        self.createdAt = createdAt
+        self.license = license
+        self.repoLink = repoLink
+        super.init(nibName: nil, bundle: nil)
+        title = repoName
+        let url = URL(string: imagem)
+        imageRepoView.kf.setImage(with: url)
+
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     var safeArea: UILayoutGuide!
     static let identifier = "RepoViewCell"
@@ -110,16 +127,5 @@ class RepoViewController: UIViewController {
         hyperLinkTextView.anchor(top:topicsStack.bottomAnchor, left: view.leftAnchor,bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor,paddingTop: 50)
         
   }
-    
-    func setup(nomeRepo:String, imagem: String, nomeAutor: String, contObservadores: String, dataCriacao: String, licenca: String, link: String) {
-        title = nomeRepo
-        let url = URL(string: imagem)
-        imageRepoView.kf.setImage(with: url)
-        self.authorName = nomeAutor
-        self.numberOfViewers = contObservadores
-        self.createdAt = dataCriacao
-        self.license = licenca
-        self.repoLink = link
-    }
-    
+
 }
