@@ -108,6 +108,17 @@ class HomeController: UIViewController {
         }
     }
     
+    private func saveFavorite(item: Item) {
+        ManagedObjectContext.shared.save(item: item) { result in
+            switch result {
+            case .Success:
+                print("sucesso")
+            case .Error(let error):
+                print(error)
+            }
+        }
+    }
+    
 }
 
 //MARK: - Tableview configuration

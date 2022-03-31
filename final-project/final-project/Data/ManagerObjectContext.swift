@@ -21,7 +21,7 @@ protocol managedProtocol {
 }
 
 protocol managedDeleteProtocol {
-    func delete(uuid: String, onCompletion: onCompletion)
+    func delete(id: Int, onCompletion: onCompletion)
 }
 
 protocol managedListProtocol {
@@ -103,10 +103,10 @@ extension ManagedObjectContext: managedListProtocol {
 
 
 extension ManagedObjectContext: managedDeleteProtocol {
-    func delete(uuid: String, onCompletion: (DataResult) -> Void) {
+    func delete(id: Int, onCompletion: (DataResult) -> Void) {
         let context = getContext()
         
-        let predicate = NSPredicate(format: "uuid == %@", "\(uuid)")
+        let predicate = NSPredicate(format: "id == %@", "\(id)")
         
         let fetRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: entity)
         

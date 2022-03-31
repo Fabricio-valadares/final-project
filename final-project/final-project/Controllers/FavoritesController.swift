@@ -68,6 +68,17 @@ class FavoritesController: UIViewController {
         }
 
     }
+    
+    private func deleteFavorite(id: Int) {
+        ManagedObjectContext.shared.delete(id: id) { result in
+            switch result {
+            case .Success:
+                print("Sucesso")
+            case .Error(let error):
+                print(error)
+            }
+        }
+    }
 }
 
 //MARK: - Tableview configuration
@@ -86,9 +97,11 @@ extension FavoritesController:UITableViewDelegate,UITableViewDataSource {
         
         return cell
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 101
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let repoDetails = repos[indexPath.row]
         let repoDetailsController = RepoDetailsController(repoName: repoDetails.name, imagem: repoDetails.owner.avatarURL, authorName: repoDetails.owner.login, numberOfViewers: String(repoDetails.watchersCount), createdAt: repoDetails.createdAt, license: repoDetails.url, repoLink: repoDetails.url)
