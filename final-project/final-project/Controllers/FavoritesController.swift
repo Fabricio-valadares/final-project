@@ -11,7 +11,7 @@ class FavoritesController: UIViewController {
   
     //MARK: - Atributes
     
-        private var repos = [Item](){
+    private var repos = [Item](){
         didSet{
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -58,18 +58,16 @@ class FavoritesController: UIViewController {
     }
         
     private func fetchRepos(){
-        let service = FetchGitHubServices()
-        service.fetchAll{
-            result in
-            switch result{
-            case .success(let repos):
-                self.repos = repos
-            case .failure(let error):
-                print(error.localizedDescription)
+        self.repos = ManagedObjectContext.shared.list { result in
+            switch result {
+                case .Success:
+                    print("Sucesso")
+                case .Error(let error):
+                    print(error)
+            }
         }
-    }
 
-  }
+    }
 }
 
 //MARK: - Tableview configuration
