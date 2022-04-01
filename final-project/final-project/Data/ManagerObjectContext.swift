@@ -59,6 +59,8 @@ class ManagedObjectContext {
         transaction.setValue(item.watchersCount, forKey: "watchersCount")
         transaction.setValue(item.login, forKey: "login")
         transaction.setValue(item.url, forKey: "url")
+        transaction.setValue(item.license, forKey: "license")
+        transaction.setValue(item.authorName, forKey: "authorName")
         
         try context.save()
         
@@ -94,12 +96,14 @@ extension ManagedObjectContext: managedListProtocol {
                     let createdAt = item.value(forKey: "createdAt") as? String,
                     let watchersCount = item.value(forKey: "watchersCount") as? Int,
                     let login = item.value(forKey: "login") as? String,
-                    let url = item.value(forKey: "url") as? String
+                    let url = item.value(forKey: "url") as? String,
+                   let license = item.value(forKey: "license") as? String,
+                    let authorName = item.value(forKey: "authorName") as? String
                 {
                     
                     print(id)
                     
-                    let favorited: FavoriteRepo = FavoriteRepo(id: id, name: name, description: description, avatarURL: avatarURL, createdAt: createdAt, watchersCount: watchersCount, login: login, url: url)
+                    let favorited: FavoriteRepo = FavoriteRepo(id: id, name: name, description: description, avatarURL: avatarURL, createdAt: createdAt, watchersCount: watchersCount, login: login, url: url, license: license, authorName: authorName)
                     
                   itemList.append(favorited)
                     

@@ -16,4 +16,6 @@ struct FavoriteRepo {
     var watchersCount: Int
     var login: String
     var url: String
+    var license: String
+    var authorName: String
 }

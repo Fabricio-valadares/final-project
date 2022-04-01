@@ -107,21 +107,6 @@ class HomeController: UIViewController {
                 }
         }
     }
-    
-    private func saveFavorite(item: Item) {
-        
-        let favorited = FavoriteRepo(id: item.id, name: item.name, description: (item.description ?? "") ?? "", avatarURL: item.owner.avatarURL, createdAt: item.createdAt, watchersCount: item.watchers, login: item.owner.login, url: item.url)
-        
-        ManagedObjectContext.shared.save(item: favorited) { result in
-            switch result {
-            case .Success:
-                print("sucesso")
-            case .Error(let error):
-                print(error)
-            }
-        }
-    }
-    
 }
 
 //MARK: - Tableview configuration
@@ -145,7 +130,9 @@ extension HomeController:UITableViewDelegate,UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let repoDetails = repos[indexPath.row]
-        let repoDetailsController = RepoDetailsController(repoName: repoDetails.name, imagem: repoDetails.owner.avatarURL, authorName: repoDetails.owner.login, numberOfViewers: String(repoDetails.watchersCount), createdAt: repoDetails.createdAt, license: repoDetails.url, repoLink: repoDetails.url)
+        
+        let repoDetailsController = RepoDetailsController(item: FavoriteRepo(id: repoDetails.id, name: repoDetails.name, description: repoDetails.description ?? "", avatarURL: repoDetails.owner.avatarURL, createdAt: repoDetails.createdAt, watchersCount: repoDetails.watchersCount, login: repoDetails.owner.login, url: repoDetails.url, license: repoDetails.license?.name ?? "", authorName: repoDetails.owner.login))
+        
         navigationController?.pushViewController(repoDetailsController, animated: true)
         
     }

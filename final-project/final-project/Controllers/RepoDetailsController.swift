@@ -13,17 +13,29 @@ class RepoDetailsController: UIViewController {
     private let license:String
     private let repoLink :String
     
-    init (repoName:String, imagem: String, authorName: String, numberOfViewers: String, createdAt: String, license: String, repoLink: String){
-        self.authorName = authorName
-        self.numberOfViewers = numberOfViewers
-        self.createdAt = createdAt
-        self.license = license
-        self.repoLink = repoLink
+    init (item: FavoriteRepo){
+        self.authorName = item.authorName
+        self.numberOfViewers =  "\(item.watchersCount)"
+        self.createdAt = item.createdAt
+        self.license = item.license
+        self.repoLink = item.url
         super.init(nibName: nil, bundle: nil)
-        title = repoName
-        let url = URL(string: imagem)
+        title = item.name
+        let url = URL(string: item.avatarURL)
         imageRepoView.kf.setImage(with: url)
 
+    }
+    
+    private func saveFavorite(item: FavoriteRepo) {
+        
+        ManagedObjectContext.shared.save(item: item) { result in
+            switch result {
+            case .Success:
+                print("sucesso")
+            case .Error(let error):
+                print(error)
+            }
+        }
     }
     
     required init?(coder: NSCoder) {

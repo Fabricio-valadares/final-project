@@ -104,7 +104,7 @@ extension FavoritesController:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let repoDetails = repos[indexPath.row]
-        let repoDetailsController = RepoDetailsController(repoName: repoDetails.name, imagem: repoDetails.avatarURL, authorName: repoDetails.login, numberOfViewers: String(repoDetails.watchersCount), createdAt: repoDetails.createdAt, license: repoDetails.url, repoLink: repoDetails.url)
+        let repoDetailsController = RepoDetailsController(item: repoDetails)
         navigationController?.pushViewController(repoDetailsController, animated: true)
         
     }
