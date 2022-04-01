@@ -13,7 +13,7 @@ class HomeController: UIViewController {
         }
     }
     
-    private var favoritedRepos: [Item] = []
+    private var favoritedRepos: [FavoriteRepo] = []
     
     lazy var orderButton:UIBarButtonItem = {
         orderButton = UIBarButtonItem()
@@ -109,7 +109,10 @@ class HomeController: UIViewController {
     }
     
     private func saveFavorite(item: Item) {
-        ManagedObjectContext.shared.save(item: item) { result in
+        
+        let favorited = FavoriteRepo(id: item.id, name: item.name, description: (item.description ?? "") ?? "", avatarURL: item.owner.avatarURL, createdAt: item.createdAt, watchersCount: item.watchers, login: item.owner.login, url: item.url)
+        
+        ManagedObjectContext.shared.save(item: favorited) { result in
             switch result {
             case .Success:
                 print("sucesso")

@@ -17,7 +17,7 @@ enum DataResult {
 typealias onCompletion = (DataResult) -> Void
 
 protocol managedProtocol {
-    func save(item: Item, onCompletion: onCompletion)
+    func save(item: FavoriteRepo, onCompletion: onCompletion)
 }
 
 protocol managedDeleteProtocol {
@@ -25,12 +25,11 @@ protocol managedDeleteProtocol {
 }
 
 protocol managedListProtocol {
-    func list(onCompletion: onCompletion) -> [Item]
+    func list(onCompletion: onCompletion) -> [FavoriteRepo]
 }
 
-
 class ManagedObjectContext {
-    private let entity = "Item_"
+    private let entity = "Favorited_"
     
     static var shared: ManagedObjectContext = {
         let instance = ManagedObjectContext()
@@ -44,7 +43,7 @@ class ManagedObjectContext {
         return appDelegate.persistentContainer.viewContext
     }
     
-    func saveData(_ item: Item) throws {
+    func saveData(_ item: FavoriteRepo) throws {
         let context = getContext()
         
         guard let entity = NSEntityDescription.entity(forEntityName: entity, in: context) else { return }
@@ -52,8 +51,14 @@ class ManagedObjectContext {
         let transaction = NSManagedObject(entity: entity, insertInto: context)
         
         // inserir dados
-        transaction.setValue(UUID(), forKey: "uuid")
         transaction.setValue(item.id, forKey: "id")
+        transaction.setValue(item.name, forKey: "name")
+        transaction.setValue(item.description, forKey: "description_")
+        transaction.setValue(item.avatarURL, forKey: "avatarURL")
+        transaction.setValue(item.createdAt, forKey: "createdAt")
+        transaction.setValue(item.watchersCount, forKey: "watchersCount")
+        transaction.setValue(item.login, forKey: "login")
+        transaction.setValue(item.url, forKey: "url")
         
         try context.save()
         
@@ -61,7 +66,7 @@ class ManagedObjectContext {
 }
 
 extension ManagedObjectContext: managedProtocol {
-    func save(item: Item, onCompletion: (DataResult) -> Void) {
+    func save(item: FavoriteRepo, onCompletion: (DataResult) -> Void) {
         do  {
             try saveData(item)
         } catch {
@@ -72,8 +77,8 @@ extension ManagedObjectContext: managedProtocol {
 }
 
 extension ManagedObjectContext: managedListProtocol {
-    func list(onCompletion: (DataResult) -> Void) -> [Item] {
-        var itemList: [Item] = []
+    func list(onCompletion: (DataResult) -> Void) -> [FavoriteRepo] {
+        var itemList: [FavoriteRepo] = []
         
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: entity)
         
@@ -82,13 +87,21 @@ extension ManagedObjectContext: managedListProtocol {
             guard let items = try getContext().fetch(fetchRequest) as? [NSManagedObject] else {return itemList}
             
             for item in items {
-                if let id = item.value(forKey: "id") as? Int
+                if let id = item.value(forKey: "id") as? Int,
+                    let name = item.value(forKey: "name") as? String,
+                    let description = item.value(forKey: "descrition_") as? String,
+                    let avatarURL = item.value(forKey: "avatarURL") as? String,
+                    let createdAt = item.value(forKey: "createdAt") as? String,
+                    let watchersCount = item.value(forKey: "watchersCount") as? Int,
+                    let login = item.value(forKey: "login") as? String,
+                    let url = item.value(forKey: "url") as? String
                 {
                     
                     print(id)
-                  //  let itemObject: Item = Item(id: id, )
                     
-                  // itemList.append(itemObject)
+                    let favorited: FavoriteRepo = FavoriteRepo(id: id, name: name, description: description, avatarURL: avatarURL, createdAt: createdAt, watchersCount: watchersCount, login: login, url: url)
+                    
+                  itemList.append(favorited)
                     
                 }
             }
@@ -106,7 +119,7 @@ extension ManagedObjectContext: managedDeleteProtocol {
     func delete(id: Int, onCompletion: (DataResult) -> Void) {
         let context = getContext()
         
-        let predicate = NSPredicate(format: "id == %@", "\(id)")
+        let predicate = NSPredicate(format: "id == %d", "\(id)")
         
         let fetRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: entity)
         

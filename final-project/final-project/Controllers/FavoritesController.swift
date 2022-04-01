@@ -11,7 +11,7 @@ class FavoritesController: UIViewController {
   
     //MARK: - Atributes
     
-    private var repos = [Item](){
+    private var repos = [FavoriteRepo](){
         didSet{
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -93,7 +93,7 @@ extension FavoritesController:UITableViewDelegate,UITableViewDataSource {
         
         let repo = repos[indexPath.row]
         cell.accessoryType = .disclosureIndicator
-        cell.setup(name: repo.name, description: repo.owner.login, imageUrl: repo.owner.avatarURL)
+        cell.setup(name: repo.name, description: repo.login, imageUrl: repo.avatarURL)
         
         return cell
     }
@@ -104,7 +104,7 @@ extension FavoritesController:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let repoDetails = repos[indexPath.row]
-        let repoDetailsController = RepoDetailsController(repoName: repoDetails.name, imagem: repoDetails.owner.avatarURL, authorName: repoDetails.owner.login, numberOfViewers: String(repoDetails.watchersCount), createdAt: repoDetails.createdAt, license: repoDetails.url, repoLink: repoDetails.url)
+        let repoDetailsController = RepoDetailsController(repoName: repoDetails.name, imagem: repoDetails.avatarURL, authorName: repoDetails.login, numberOfViewers: String(repoDetails.watchersCount), createdAt: repoDetails.createdAt, license: repoDetails.url, repoLink: repoDetails.url)
         navigationController?.pushViewController(repoDetailsController, animated: true)
         
     }
