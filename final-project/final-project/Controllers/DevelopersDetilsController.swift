@@ -1,22 +1,24 @@
 import UIKit
 
 class DevelopersDetilsController: UIViewController {
-
+    
     private let developerPhone :String
     private let developerEmail :String
     private let developerLinkedin:String
     private let developerTwitter :String
+    private let developerDescription : String
     
-    init (developerPhoto:String ,developerName:String, developerPhone: String, developerEmail: String, developerLinkedin: String, developerTwitter: String){
+    init (developerPhoto:String ,developerName:String, developerPhone: String, developerEmail: String, developerLinkedin: String, developerTwitter: String, developerDescription: String){
         self.developerPhone = developerPhone
         self.developerEmail = developerEmail
         self.developerLinkedin = developerLinkedin
         self.developerTwitter = developerTwitter
+        self.developerDescription = developerDescription
         super.init(nibName: nil, bundle: nil)
         title = developerName
         let url = URL(string: developerPhoto)
         imageRepoView.kf.setImage(with: url)
-
+        
     }
     
     required init?(coder: NSCoder) {
@@ -25,7 +27,7 @@ class DevelopersDetilsController: UIViewController {
     
     var safeArea: UILayoutGuide!
     static let identifier = "RepoViewCell"
-           
+    
     lazy var imageRepoView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(systemName: "stop")
@@ -41,7 +43,7 @@ class DevelopersDetilsController: UIViewController {
         subTitle.textColor = .black
         subTitle.numberOfLines = 0
         subTitle.font = UIFont.systemFont(ofSize: 17)
-        subTitle.text = "A curated list of awesome iOS ecosystem, including Objective-c and Swift Projects"
+        subTitle.text = self.developerDescription
         return subTitle
     }()
     
@@ -65,13 +67,13 @@ class DevelopersDetilsController: UIViewController {
         return topicLinkedin
     }()
     
-
+    
     // MARK: - Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-       
+        
     }
     
     //MARK: - Helpers
@@ -83,20 +85,30 @@ class DevelopersDetilsController: UIViewController {
         view.addSubview(imageRepoView)
         imageRepoView.centerX(inView: view,topAnchor: view.safeAreaLayoutGuide.topAnchor,paddingTop: 20)
         imageRepoView.setDimensions(width: 200, height: 150)
-
+        
         view.addSubview(subTitle)
         subTitle.anchor(top: imageRepoView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 23, paddingLeft: 21, paddingRight: 21)
-
-        let topicsStack = UIStackView(arrangedSubviews: [topicEmail,topicPhone,topicTwetter,topicLinkedin])
-        topicsStack.axis = .vertical
-        topicsStack.spacing = 8
-        view.addSubview(topicsStack)
         
-        topicsStack.anchor(top: subTitle.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor,paddingTop: 16, paddingLeft: 16, paddingRight: 16)
-     
+        if (self.developerTwitter != "") {
+            let topicsStack = UIStackView(arrangedSubviews: [topicPhone,topicEmail,topicLinkedin,topicTwetter])
+            
+            topicsStack.axis = .vertical
+            topicsStack.spacing = 8
+            view.addSubview(topicsStack)
+            
+            topicsStack.anchor(top: subTitle.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor,paddingTop: 16, paddingLeft: 16, paddingRight: 16)
+            
+        } else {
+            let topicsStack = UIStackView(arrangedSubviews: [topicPhone,topicEmail,topicLinkedin])
+            topicsStack.axis = .vertical
+            topicsStack.spacing = 8
+            view.addSubview(topicsStack)
+            
+            topicsStack.anchor(top: subTitle.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor,paddingTop: 16, paddingLeft: 16, paddingRight: 16)
+        }
         
-  }
-
-    
-  
+        
+        
+        
+    }
 }

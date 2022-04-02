@@ -73,9 +73,7 @@ class HomeController: UIViewController {
     
     private func configureTabBar(){
         title = "List"
-        //let aparence = UITabBarAppearance()
         navigationItem.rightBarButtonItem = orderButton
-        
     }
     
     @objc func handleOrdenates(){
