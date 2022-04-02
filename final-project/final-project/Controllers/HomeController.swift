@@ -61,6 +61,7 @@ class HomeController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        title = "List"
         configureTabBar()
     }
 
@@ -72,7 +73,6 @@ class HomeController: UIViewController {
     }
     
     private func configureTabBar(){
-        title = "List"
         navigationItem.rightBarButtonItem = orderButton
     }
     
