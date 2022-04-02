@@ -9,4 +9,5 @@ struct Developers:Codable {
     var linkedin: String
     var twitter: String
     var profile: String
+    var description: String
 }

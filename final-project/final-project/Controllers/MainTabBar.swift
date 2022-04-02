@@ -9,6 +9,8 @@ class MainTabBar: UITabBarController {
   }
   
   private func configureTabBar() {
+    
+      
     tabBar.tintColor = .black
     viewControllers = [
       embedInNavigationController(vc: HomeController(), title: "Home", image: "house"),
