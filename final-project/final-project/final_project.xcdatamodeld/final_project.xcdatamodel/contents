@@ -5,12 +5,12 @@
         <attribute name="avatarURL" optional="YES" attributeType="String"/>
         <attribute name="createdAt" optional="YES" attributeType="String"/>
         <attribute name="description_" optional="YES" attributeType="String"/>
-        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="license" optional="YES" attributeType="String"/>
         <attribute name="login" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="url" optional="YES" attributeType="String"/>
-        <attribute name="watchersCount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="watchersCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <elements>
         <element name="Favorited_" positionX="-63" positionY="-18" width="128" height="179"/>

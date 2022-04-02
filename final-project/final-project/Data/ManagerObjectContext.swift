@@ -91,7 +91,7 @@ extension ManagedObjectContext: managedListProtocol {
             for item in items {
                 if let id = item.value(forKey: "id") as? Int,
                     let name = item.value(forKey: "name") as? String,
-                    let description = item.value(forKey: "descrition_") as? String,
+                    let description = item.value(forKey: "description_") as? String,
                     let avatarURL = item.value(forKey: "avatarURL") as? String,
                     let createdAt = item.value(forKey: "createdAt") as? String,
                     let watchersCount = item.value(forKey: "watchersCount") as? Int,
@@ -100,8 +100,6 @@ extension ManagedObjectContext: managedListProtocol {
                    let license = item.value(forKey: "license") as? String,
                     let authorName = item.value(forKey: "authorName") as? String
                 {
-                    
-                    print(id)
                     
                     let favorited: FavoriteRepo = FavoriteRepo(id: id, name: name, description: description, avatarURL: avatarURL, createdAt: createdAt, watchersCount: watchersCount, login: login, url: url, license: license, authorName: authorName)
                     
@@ -123,7 +121,7 @@ extension ManagedObjectContext: managedDeleteProtocol {
     func delete(id: Int, onCompletion: (DataResult) -> Void) {
         let context = getContext()
         
-        let predicate = NSPredicate(format: "id == %d", "\(id)")
+        let predicate = NSPredicate(format: "id == %d", id)
         
         let fetRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: entity)
         

@@ -36,14 +36,15 @@ class FavoritesController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
-        configureUI()
-        fetchRepos()
+        
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureTabBar()
+        configureUI()
+        fetchRepos()
     }
 
     

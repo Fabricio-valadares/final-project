@@ -13,8 +13,6 @@ class HomeController: UIViewController {
         }
     }
     
-    private var favoritedRepos: [FavoriteRepo] = []
-    
     lazy var orderButton:UIBarButtonItem = {
         orderButton = UIBarButtonItem()
         orderButton.image = UIImage(systemName: "slider.horizontal.3")
@@ -58,7 +56,6 @@ class HomeController: UIViewController {
         view.addSubview(tableView)
         configureUI()
         fetchRepos()
-        fetchFavoritedRespos()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -93,17 +90,6 @@ class HomeController: UIViewController {
                         self.repos = repos
                     case .failure(let error):
                         print(error.localizedDescription)
-                }
-        }
-    }
-    
-    private func fetchFavoritedRespos() {
-        self.favoritedRepos = ManagedObjectContext.shared.list { result in
-            switch result {
-                case .Success:
-                    print("Sucesso")
-                case .Error(let error):
-                    print(error)
                 }
         }
     }
