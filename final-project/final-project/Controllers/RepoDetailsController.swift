@@ -9,6 +9,7 @@ class RepoDetailsController: UIViewController {
 
     private let item: FavoriteRepo
     private var favoritedRepos: [Int] = []
+    private var favoriteButton: UIBarButtonItem?
     
     init (item: FavoriteRepo){
         self.item = item
@@ -93,35 +94,39 @@ class RepoDetailsController: UIViewController {
         super.viewDidLoad()
         configureUI()
         fetchFavoritedRespos()
-       
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         let isFavorited = favoritedRepos.contains(where: { repo in
-                item.id == repo
+           item.id == repo
         })
     
         let icon = isFavorited ? "heart.fill" : "heart"
         
         let action = isFavorited ? #selector(unFavoriteItem) : #selector(favoriteItem)
+      
+        favoriteButton = UIBarButtonItem(image: UIImage(systemName: icon), style: .plain, target: self, action: action)
+        favoriteButton?.tintColor = .black
+        navigationItem.rightBarButtonItem = favoriteButton
         
-        let newButton = UIBarButtonItem(image: UIImage.init(systemName: icon), style: .plain, target: self, action: action)
-        
-        newButton.tintColor = .black
-        
-        navigationItem.rightBarButtonItem = newButton
     }
     
     //MARK: - Binder
+  
+    func changeFavoriteIcon(icon: String) {
+      favoriteButton?.image = UIImage(systemName: icon)
+    }
     
     @IBAction func favoriteItem() {
-        saveFavorite(item: item)
+      saveFavorite(item: item)
+      changeFavoriteIcon(icon: "heart.fill")
     }
     
     @IBAction func unFavoriteItem() {
         deleteFavorite()
+        changeFavoriteIcon(icon: "heart")
     }
     
     //MARK: - Helpers
