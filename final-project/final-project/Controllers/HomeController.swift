@@ -12,6 +12,9 @@ class HomeController: UIViewController {
             }
         }
     }
+    private var filteredRepos:[Item] = []
+       
+    private var isAsc:Bool = false
     
     lazy var orderButton:UIBarButtonItem = {
         orderButton = UIBarButtonItem()
@@ -24,15 +27,12 @@ class HomeController: UIViewController {
         return orderButton
     }()
     
-    lazy var searchBar: UISearchBar = {
-        let searchBar = UISearchBar()
-        searchBar.sizeToFit()
-        searchBar.searchBarStyle = UISearchBar.Style.prominent
-        searchBar.placeholder = "Search..."
-        searchBar.isTranslucent = false
-        searchBar.delegate = self
-        searchBar.autocapitalizationType = .none
-        
+    lazy var searchBar: UISearchController = {
+        let searchBar = UISearchController(searchResultsController: nil)
+        searchBar.automaticallyShowsScopeBar = false
+        searchBar.searchBar.searchTextField.placeholder = "Search..."
+        searchBar.searchBar.sizeToFit()
+        searchBar.searchResultsUpdater = self
         return searchBar
 
     }()
@@ -40,7 +40,7 @@ class HomeController: UIViewController {
     lazy var tableView : UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain )
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.tableHeaderView = searchBar
+        tableView.tableHeaderView = searchBar.searchBar
         tableView.isScrollEnabled = true
         tableView.separatorStyle = .none
         tableView.delegate = self
@@ -73,13 +73,17 @@ class HomeController: UIViewController {
     
     private func configureTabBar(){
         title = "List"
-        //let aparence = UITabBarAppearance()
         navigationItem.rightBarButtonItem = orderButton
-        
     }
     
     @objc func handleOrdenates(){
-        print("ordening")
+        if(isAsc){
+            repos.sort {$0.name.lowercased() < $1.name.lowercased()}
+            isAsc = false
+        }else {
+            repos.sort {$0.name.lowercased() > $1.name.lowercased()}
+            isAsc = true
+        }
     }
     
     private func fetchRepos(){
@@ -95,19 +99,33 @@ class HomeController: UIViewController {
     }
 
   }
+
 }
 
 //MARK: - Tableview configuration
 
 extension HomeController:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchBar.isActive && searchBar.searchBar.text != ""{
+            return filteredRepos.count
+        }
+        
         return repos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell  = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as? CustomTableViewCell else {return UITableViewCell()}
         
-        let repo = repos[indexPath.row]
+        let repo:Item
+        
+        if searchBar.isActive && searchBar.searchBar.text != ""{
+            repo = filteredRepos[indexPath.row]
+        }else{
+            repo = repos[indexPath.row]
+        }
+
+     
+        
         cell.accessoryType = .disclosureIndicator
         cell.setup(name: repo.name, description: repo.owner.login, imageUrl: repo.owner.avatarURL)
         
@@ -118,20 +136,33 @@ extension HomeController:UITableViewDelegate,UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let repoDetails = repos[indexPath.row]
-        let repoDetailsController = RepoDetailsController(repoName: repoDetails.name, imagem: repoDetails.owner.avatarURL, authorName: repoDetails.owner.login, numberOfViewers: String(repoDetails.watchersCount), createdAt: repoDetails.createdAt, license: repoDetails.url, repoLink: repoDetails.url)
+        
+        let repoDetailsController = RepoDetailsController(repoName: repoDetails.name, imagem: repoDetails.owner.avatarURL, authorName: repoDetails.owner.login, numberOfViewers: String(repoDetails.watchersCount), createdAt: repoDetails.createdAt, license: repoDetails.license?.name ?? "This repository has no icense", repoLink: repoDetails.url, description: repoDetails.description ?? "This repository has no description")
+        
         navigationController?.pushViewController(repoDetailsController, animated: true)
         
     }
     
 }
 
+//MARK: - Search configuration
 
-extension HomeController: UISearchBarDelegate {
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        if let serched = searchBar.text {
-            print(serched)
-        } else {
-            print("Sem url")
+extension HomeController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        
+        if !searchController.isActive{
+            return
         }
+        
+        guard let searchedText = searchController.searchBar.text else {
+            return
+        }
+
+       let filteredRepos = repos.filter{ repo in
+           return repo.name.lowercased().contains(searchedText.lowercased())
+        }
+        
+        self.filteredRepos = filteredRepos
+        self.tableView.reloadData()
     }
 }

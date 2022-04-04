@@ -12,13 +12,16 @@ class RepoDetailsController: UIViewController {
     private let createdAt :String
     private let license:String
     private let repoLink :String
+    private let repodescription :String?
+
     
-    init (repoName:String, imagem: String, authorName: String, numberOfViewers: String, createdAt: String, license: String, repoLink: String){
+    init (repoName:String, imagem: String, authorName: String, numberOfViewers: String, createdAt: String, license: String, repoLink: String, description:String){
         self.authorName = authorName
         self.numberOfViewers = numberOfViewers
         self.createdAt = createdAt
         self.license = license
         self.repoLink = repoLink
+        self.repodescription = description
         super.init(nibName: nil, bundle: nil)
         title = repoName
         let url = URL(string: imagem)
@@ -48,7 +51,7 @@ class RepoDetailsController: UIViewController {
         subTitle.textColor = .black
         subTitle.numberOfLines = 0
         subTitle.font = UIFont.systemFont(ofSize: 17)
-        subTitle.text = "A curated list of awesome iOS ecosystem, including Objective-c and Swift Projects"
+        subTitle.text = self.repodescription ?? "A curated list of awesome iOS ecosystem, including Objective-c and Swift Projects"
         return subTitle
     }()
     
@@ -65,7 +68,7 @@ class RepoDetailsController: UIViewController {
     
     lazy var topicCreatedAt:UIView = {
         var createdAtValue = ""
-        let userOwner = Utilities().createTopicItem(icon: "alarm.fill", key: "Data de criação: ", value: self.createdAt)
+        let userOwner = Utilities().createTopicItem(icon: "alarm.fill", key: "Data   de criação: ", value: Utilities().DateFormater(date: String(self.createdAt)))
         return userOwner
     }()
     

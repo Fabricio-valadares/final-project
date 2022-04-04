@@ -1,10 +1,4 @@
-//
-//  Utilities.swift
-//  final-project
-//
-//  Created by Idwall Go Dev 012 on 29/03/22.
-//
-
+    
 import UIKit
 
 class Utilities {
@@ -32,5 +26,18 @@ class Utilities {
 
     
         return topicItem
+    }
+    
+    func DateFormater(date:String) -> String{
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "MMMM d, yyyy"
+        
+        let formatedDate = "\(String(describing: dateFormatter.date(from: date)))"
+
+        print("date: \(date)")
+        
+        return formatedDate
     }
 }

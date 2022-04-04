@@ -21,7 +21,7 @@ struct Item: Codable {
     let itemPrivate: Bool
     let owner: Owner
     let htmlURL: String
-    let description: String??
+    let description: String?
     let fork: Bool
     let url, forksURL: String
     let keysURL, collaboratorsURL: String
@@ -46,13 +46,13 @@ struct Item: Codable {
     let gitURL, sshURL: String
     let cloneURL: String
     let svnURL: String
-    let homepage: String??
+    let homepage: String?
     let size, stargazersCount, watchersCount: Int
     let language: String
     let hasIssues, hasProjects, hasDownloads, hasWiki: Bool
     let hasPages: Bool
     let forksCount: Int
-    let mirrorURL: String??
+    let mirrorURL: String?
     let archived, disabled: Bool
     let openIssuesCount: Int
     let license: License?
@@ -143,7 +143,7 @@ struct Item: Codable {
 // MARK: - License
 struct License: Codable {
     let key, name, spdxID: String
-    let url: String??
+    let url: String?
     let nodeID: String
 
     enum CodingKeys: String, CodingKey {

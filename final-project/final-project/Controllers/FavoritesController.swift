@@ -93,8 +93,8 @@ extension FavoritesController:UITableViewDelegate,UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let repoDetails = repos[indexPath.row]
-        let repoDetailsController = RepoDetailsController(repoName: repoDetails.name, imagem: repoDetails.owner.avatarURL, authorName: repoDetails.owner.login, numberOfViewers: String(repoDetails.watchersCount), createdAt: repoDetails.createdAt, license: repoDetails.url, repoLink: repoDetails.url)
-        navigationController?.pushViewController(repoDetailsController, animated: true)
+        let repoDetailsController = RepoDetailsController(repoName: repoDetails.name, imagem: repoDetails.owner.avatarURL, authorName: repoDetails.owner.login, numberOfViewers: String(repoDetails.watchersCount), createdAt: repoDetails.createdAt, license: repoDetails.license?.name ?? "This repository has no License", repoLink: repoDetails.url, description: repoDetails.description ?? "This repository has no description")
+        navigationController?.pushViewController(repoDetailsController  , animated: true)
         
     }
     
