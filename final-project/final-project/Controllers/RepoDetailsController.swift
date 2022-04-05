@@ -59,19 +59,16 @@ class RepoDetailsController: UIViewController {
     }()
     
     lazy var topicViewers:UIView = {
-        var viewersValue = ""
         let userOwner = Utilities().createTopicItem(icon: "eye", key: "Contagem de Observadores: ", value: "\(item.watchersCount)")
         return userOwner
     }()
     
     lazy var topicCreatedAt:UIView = {
-        var createdAtValue = ""
         let userOwner = Utilities().createTopicItem(icon: "alarm.fill", key: "Data de criação: ", value: item.createdAt)
         return userOwner
     }()
     
     lazy var topicLicense:UIView = {
-        var licenseValue = ""
         let userOwner = Utilities().createTopicItem(icon: "globe", key: "Licença: ", value: item.license)
         return userOwner
     }()

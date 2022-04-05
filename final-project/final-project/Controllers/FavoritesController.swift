@@ -1,10 +1,3 @@
-//
-//  FavoritesViewController.swift
-//  final-project
-//
-//  Created by Giovanna Moeller on 28/03/22.
-//
-
 import UIKit
 
 class FavoritesController: UIViewController {
@@ -106,7 +99,7 @@ extension FavoritesController:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let repoDetails = repos[indexPath.row]
         let repoDetailsController = RepoDetailsController(item: repoDetails)
-        navigationController?.pushViewController(repoDetailsController, animated: true)
+        navigationController?.pushViewController(repoDetailsController  , animated: true)
         
     }
     
