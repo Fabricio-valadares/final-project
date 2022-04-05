@@ -1,10 +1,3 @@
-//
-//  Phone.swift
-//  final-project
-//
-//  Created by Pamella Lima on 04/04/22.
-//
-
 import Foundation
 import UIKit
 
@@ -30,4 +23,3 @@ class Phone {
         return false
     }
 }
-

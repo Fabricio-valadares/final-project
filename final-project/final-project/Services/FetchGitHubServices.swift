@@ -8,7 +8,7 @@ enum FetchGitHubError: Error {
 
 class FetchGitHubServices: FetchGitHubProtocol {
     func fetchAll(_ completion: @escaping (Result<[Item], Error>) -> Void) {
-        guard let url = URL(string:"https://api.github.com/search/repositories?q=stars:%3E=10000+language:swift&sort=stars&order=desc" )else {
+        guard let url = URL(string:"https://api.github.com/search/repositories?q=stars:%3E=10000+language:swift&sort=stars&order=desc&per_page=100" )else {
             completion(.failure(FetchGitHubError.invalidURL))
             return
         }
