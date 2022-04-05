@@ -1,17 +1,10 @@
-//
-//  FavoritesViewController.swift
-//  final-project
-//
-//  Created by Giovanna Moeller on 28/03/22.
-//
-
 import UIKit
 
 class FavoritesController: UIViewController {
   
     //MARK: - Atributes
     
-        private var repos = [Item](){
+    private var repos = [Repository](){
         didSet{
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -36,14 +29,15 @@ class FavoritesController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
-        configureUI()
-        fetchRepos()
+        
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureTabBar()
+        configureUI()
+        fetchRepos()
     }
 
     
@@ -58,18 +52,27 @@ class FavoritesController: UIViewController {
     }
         
     private func fetchRepos(){
-        let service = FetchGitHubServices()
-        service.fetchAll{
-            result in
-            switch result{
-            case .success(let repos):
-                self.repos = repos
-            case .failure(let error):
-                print(error.localizedDescription)
+        self.repos = ManagedObjectContext.shared.list { result in
+            switch result {
+                case .Success:
+                    print("Sucesso")
+                case .Error(let error):
+                    print(error)
+            }
+        }
+
+    }
+    
+    private func deleteFavorite(id: Int) {
+        ManagedObjectContext.shared.delete(id: id) { result in
+            switch result {
+            case .Success:
+                print("Sucesso")
+            case .Error(let error):
+                print(error)
+            }
         }
     }
-
-  }
 }
 
 //MARK: - Tableview configuration
@@ -84,13 +87,15 @@ extension FavoritesController:UITableViewDelegate,UITableViewDataSource {
         
         let repo = repos[indexPath.row]
         cell.accessoryType = .disclosureIndicator
-        cell.setup(name: repo.name, description: repo.owner.login, imageUrl: repo.owner.avatarURL)
+        cell.setup(name: repo.name, description: repo.login, imageUrl: repo.avatarURL)
         
         return cell
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 101
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let repoDetails = repos[indexPath.row]
         let repoDetailsController = RepoDetailsController(repoName: repoDetails.name, imagem: repoDetails.owner.avatarURL, authorName: repoDetails.owner.login, numberOfViewers: String(repoDetails.watchersCount), createdAt: repoDetails.createdAt, license: repoDetails.license?.name ?? "This repository has no License", repoLink: repoDetails.url, description: repoDetails.description ?? "This repository has no description")
