@@ -7,7 +7,7 @@ class RepoDetailsController: UIViewController {
     
     //MARK: - Properties
 
-    private let item: FavoriteRepo
+    private let item: Repository
     private lazy var favoritedRepos = [Int]() {
       didSet {
           DispatchQueue.main.async {
@@ -18,7 +18,7 @@ class RepoDetailsController: UIViewController {
   
     private var favoriteButton: UIBarButtonItem?
     
-    init (item: FavoriteRepo){
+    init (item: Repository){
         self.item = item
         super.init(nibName: nil, bundle: nil)
         title = item.name
@@ -150,7 +150,7 @@ class RepoDetailsController: UIViewController {
         
   }
     
-    private func saveFavorite(item: FavoriteRepo) {
+    private func saveFavorite(item: Repository) {
         
         ManagedObjectContext.shared.save(item: item) { result in
             switch result {

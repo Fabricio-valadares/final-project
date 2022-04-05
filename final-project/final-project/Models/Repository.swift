@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FavoriteRepo {
+struct Repository {
     var id: Int
     var name: String
     var description: String

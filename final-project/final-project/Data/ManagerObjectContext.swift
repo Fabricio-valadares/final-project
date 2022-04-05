@@ -17,7 +17,7 @@ enum DataResult {
 typealias onCompletion = (DataResult) -> Void
 
 protocol managedProtocol {
-    func save(item: FavoriteRepo, onCompletion: onCompletion)
+    func save(item: Repository, onCompletion: onCompletion)
 }
 
 protocol managedDeleteProtocol {
@@ -25,7 +25,7 @@ protocol managedDeleteProtocol {
 }
 
 protocol managedListProtocol {
-    func list(onCompletion: onCompletion) -> [FavoriteRepo]
+    func list(onCompletion: onCompletion) -> [Repository]
 }
 
 class ManagedObjectContext {
@@ -43,7 +43,7 @@ class ManagedObjectContext {
         return appDelegate.persistentContainer.viewContext
     }
     
-    func saveData(_ item: FavoriteRepo) throws {
+    func saveData(_ item: Repository) throws {
         let context = getContext()
         
         guard let entity = NSEntityDescription.entity(forEntityName: entity, in: context) else { return }
@@ -68,7 +68,7 @@ class ManagedObjectContext {
 }
 
 extension ManagedObjectContext: managedProtocol {
-    func save(item: FavoriteRepo, onCompletion: (DataResult) -> Void) {
+    func save(item: Repository, onCompletion: (DataResult) -> Void) {
         do  {
             try saveData(item)
             onCompletion(.Success)
@@ -80,8 +80,8 @@ extension ManagedObjectContext: managedProtocol {
 }
 
 extension ManagedObjectContext: managedListProtocol {
-    func list(onCompletion: (DataResult) -> Void) -> [FavoriteRepo] {
-        var itemList: [FavoriteRepo] = []
+    func list(onCompletion: (DataResult) -> Void) -> [Repository] {
+        var itemList: [Repository] = []
         
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: entity)
         
@@ -102,7 +102,7 @@ extension ManagedObjectContext: managedListProtocol {
                     let authorName = item.value(forKey: "authorName") as? String
                 {
                     
-                    let favorited: FavoriteRepo = FavoriteRepo(id: id, name: name, description: description, avatarURL: avatarURL, createdAt: createdAt, watchersCount: watchersCount, login: login, url: url, license: license, authorName: authorName)
+                    let favorited: Repository = Repository(id: id, name: name, description: description, avatarURL: avatarURL, createdAt: createdAt, watchersCount: watchersCount, login: login, url: url, license: license, authorName: authorName)
                     
                   itemList.append(favorited)
                     

@@ -117,7 +117,7 @@ extension HomeController:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let repoDetails = repos[indexPath.row]
         
-        let repoDetailsController = RepoDetailsController(item: FavoriteRepo(id: repoDetails.id, name: repoDetails.name, description: repoDetails.description ?? "", avatarURL: repoDetails.owner.avatarURL, createdAt: repoDetails.createdAt, watchersCount: repoDetails.watchersCount, login: repoDetails.owner.login, url: repoDetails.url, license: repoDetails.license?.name ?? "", authorName: repoDetails.owner.login))
+        let repoDetailsController = RepoDetailsController(item: Repository(id: repoDetails.id, name: repoDetails.name, description: repoDetails.description ?? "", avatarURL: repoDetails.owner.avatarURL, createdAt: repoDetails.createdAt, watchersCount: repoDetails.watchersCount, login: repoDetails.owner.login, url: repoDetails.url, license: repoDetails.license?.name ?? "", authorName: repoDetails.owner.login))
         
         navigationController?.pushViewController(repoDetailsController, animated: true)
         

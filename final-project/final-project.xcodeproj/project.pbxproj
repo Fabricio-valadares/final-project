@@ -10,7 +10,7 @@
 		0D4CFED8F3041EAF5B7D2B76 /* Pods_final_project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0214F0762896CD751C69C75 /* Pods_final_project.framework */; };
 		2ADD1E8327F656F600AE7128 /* ManagerObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD1E8227F656F600AE7128 /* ManagerObjectContext.swift */; };
 		2ADD1E8527F658F000AE7128 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ADD1E8427F658F000AE7128 /* CoreData.framework */; };
-		2ADD1E8727F79FAA00AE7128 /* FavoriteRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD1E8627F79FAA00AE7128 /* FavoriteRepo.swift */; };
+		2ADD1E8727F79FAA00AE7128 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD1E8627F79FAA00AE7128 /* Repository.swift */; };
 		346891CC27ED3692001D45DB /* GitHub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346891CB27ED3692001D45DB /* GitHub.swift */; };
 		349AC3CF27F28FA7002E19DD /* RepoDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349AC3CE27F28FA7002E19DD /* RepoDetailsController.swift */; };
 		349AC3D427F353A5002E19DD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349AC3D327F353A5002E19DD /* Extensions.swift */; };
@@ -36,7 +36,7 @@
 		1C97FB43670A09F0271FF125 /* Pods-final-project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-final-project.debug.xcconfig"; path = "Target Support Files/Pods-final-project/Pods-final-project.debug.xcconfig"; sourceTree = "<group>"; };
 		2ADD1E8227F656F600AE7128 /* ManagerObjectContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerObjectContext.swift; sourceTree = "<group>"; };
 		2ADD1E8427F658F000AE7128 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		2ADD1E8627F79FAA00AE7128 /* FavoriteRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRepo.swift; sourceTree = "<group>"; };
+		2ADD1E8627F79FAA00AE7128 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		346891CB27ED3692001D45DB /* GitHub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHub.swift; sourceTree = "<group>"; };
 		349AC3CE27F28FA7002E19DD /* RepoDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoDetailsController.swift; sourceTree = "<group>"; };
 		349AC3D327F353A5002E19DD /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -88,7 +88,7 @@
 			children = (
 				346891CB27ED3692001D45DB /* GitHub.swift */,
 				349AC3D527F39F65002E19DD /* Developers.swift */,
-				2ADD1E8627F79FAA00AE7128 /* FavoriteRepo.swift */,
+				2ADD1E8627F79FAA00AE7128 /* Repository.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -312,7 +312,7 @@
 			files = (
 				349AC3CF27F28FA7002E19DD /* RepoDetailsController.swift in Sources */,
 				48C6CE2A27F281FC00FD7BBB /* MainTabBar.swift in Sources */,
-				2ADD1E8727F79FAA00AE7128 /* FavoriteRepo.swift in Sources */,
+				2ADD1E8727F79FAA00AE7128 /* Repository.swift in Sources */,
 				346891CC27ED3692001D45DB /* GitHub.swift in Sources */,
 				34F3D1CA27EE222F00B768A1 /* FetchGitHubProtocol.swift in Sources */,
 				349AC3D627F39F65002E19DD /* Developers.swift in Sources */,

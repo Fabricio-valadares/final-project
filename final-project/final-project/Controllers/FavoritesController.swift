@@ -11,7 +11,7 @@ class FavoritesController: UIViewController {
   
     //MARK: - Atributes
     
-    private var repos = [FavoriteRepo](){
+    private var repos = [Repository](){
         didSet{
             DispatchQueue.main.async {
                 self.tableView.reloadData()
