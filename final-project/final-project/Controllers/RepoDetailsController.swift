@@ -49,7 +49,7 @@ class RepoDetailsController: UIViewController {
         subTitle.textColor = .black
         subTitle.numberOfLines = 0
         subTitle.font = UIFont.systemFont(ofSize: 17)
-        subTitle.text = self.repodescription ?? "A curated list of awesome iOS ecosystem, including Objective-c and Swift Projects"
+        subTitle.text = "A curated list of awesome iOS ecosystem, including Objective-c and Swift Projects"
         return subTitle
     }()
     
