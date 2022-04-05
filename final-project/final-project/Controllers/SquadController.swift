@@ -26,12 +26,65 @@ class SquadController: UIViewController {
         super.viewDidLoad()
         title = "Time"
         users = [
-            Developers(name: "Pamella Lima", occupation: "Ocupação", phone: "(83)99985-3998", email: "pamellavsl@gmail.com", linkedin: "https://www.linkedin.com/in/pamella-lima-91a4ab1b4/", twitter: "https://twitter.com/pamellusca", profile: "https://avatars.githubusercontent.com/u/45980325?v=4", description: "texto de exemplo"),
-            Developers(name: "Miller César", occupation: "Ocupação", phone: "(00)00000-0000", email: "funalo@mail.com", linkedin: "https://dominio.com.br", twitter: "user123", profile: "https://avatars.githubusercontent.com/u/20051554?v=4", description: "texto de exemplo"),
-            Developers(name: "Fabricio Valadares", occupation: "Full-Stack Developer", phone: "(62)98475-8804", email: "fabriciovaladares0@gmail.com", linkedin: "https://www.linkedin.com/in/fabricio-valadares", twitter: "", profile: "https://avatars.githubusercontent.com/u/63164587?v=4", description: "Olá, meu nome é Fabricio e sou super curioso em aprender coisas novas e gosto muito de criar aplicações para usar no meu dia a dia."),
-            Developers(name: "Giovanna Moeller", occupation: "Desenvolvedora Web e iOS - Criadora \nde Conteúdo", phone: "(14)991293534", email: "giovannagmoeller@gmail.com", linkedin: "https://linkedin.com/in/giovannamoeller", twitter: "", profile: "https://avatars.githubusercontent.com/u/47362960?v=4", description: "texto de exemplo"),
-            Developers(name: "Melquias Rosa Ribeiro", occupation: "Ocupação", phone: "(98)981877537", email: "funalo@mail.com", linkedin: "https://www.linkedin.com/in/melquias-ribeiro-a10639182/", twitter: "@MelquiasRibeiro", profile: "https://avatars.githubusercontent.com/u/54459438?v=4", description: "texto de exemplo"),
-            Developers(name: "Felipe Brigagão", occupation: "Ocupação", phone: "(61)99460-5930", email: "felipe.brigagao@icloud.com", linkedin: "https://www.linkedin.com/in/felipebrigagaoalmeida/", twitter: "https://twitter.com/FelipeB_A", profile: "https://avatars.githubusercontent.com/u/30760595?v=4", description: "texto de exemplo")
+            Developers(
+                name: "Pamella Lima",
+                occupation: "Ocupação",
+                phone: "(83)99985-3998",
+                email: "pamellavsl@gmail.com",
+                linkedin: "https://www.linkedin.com/in/pamella-lima-91a4ab1b4/",
+                twitter: "https://twitter.com/pamellusca",
+                profile: "https://avatars.githubusercontent.com/u/45980325?v=4",
+                description: "texto de exemplo"
+            ),
+            Developers(
+                name: "Miller César",
+                occupation: "Ocupação",
+                phone: "(00)00000-0000",
+                email: "funalo@mail.com",
+                linkedin: "https://dominio.com.br",
+                twitter: "user123",
+                profile: "https://avatars.githubusercontent.com/u/20051554?v=4",
+                description: "texto de exemplo"
+            ),
+            Developers(
+                name: "Fabricio Valadares",
+                occupation: "Full-Stack Developer",
+                phone: "(62)98475-8804",
+                email: "fabriciovaladares0@gmail.com",
+                linkedin: "https://www.linkedin.com/in/fabricio-valadares",
+                twitter: "",
+                profile: "https://avatars.githubusercontent.com/u/63164587?v=4",
+                description: "Olá, meu nome é Fabricio e sou super curioso em aprender coisas novas e gosto muito de criar aplicações para usar no meu dia a dia."
+            ),
+            Developers(
+                name: "Giovanna Moeller",
+                occupation: "Desenvolvedora Web e iOS - Criadora \nde Conteúdo",
+                phone: "(14)991293534",
+                email: "giovannagmoeller@gmail.com",
+                linkedin: "https://linkedin.com/in/giovannamoeller",
+                twitter: "", profile: "https://avatars.githubusercontent.com/u/47362960?v=4",
+                description: "texto de exemplo"
+            ),
+            Developers(
+                name: "Melquias Rosa Ribeiro",
+                occupation: "Ocupação",
+                phone: "(98)981877537",
+                email: "funalo@mail.com",
+                linkedin: "https://www.linkedin.com/in/melquias-ribeiro-a10639182/",
+                twitter: "@MelquiasRibeiro",
+                profile: "https://avatars.githubusercontent.com/u/54459438?v=4",
+                description: "texto de exemplo"
+            ),
+            Developers(
+                name: "Felipe Brigagão",
+                occupation: "Ocupação",
+                phone: "(61)99460-5930",
+                email: "felipe.brigagao@icloud.com",
+                linkedin: "https://www.linkedin.com/in/felipebrigagaoalmeida/",
+                twitter: "https://twitter.com/FelipeB_A",
+                profile: "https://avatars.githubusercontent.com/u/30760595?v=4",
+                description: "texto de exemplo"
+            )
         ]
         
         view.addSubview(tableView)
