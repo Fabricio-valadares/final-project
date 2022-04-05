@@ -8,7 +8,14 @@ class RepoDetailsController: UIViewController {
     //MARK: - Properties
 
     private let item: FavoriteRepo
-    private var favoritedRepos: [Int] = []
+    private lazy var favoritedRepos = [Int]() {
+      didSet {
+          DispatchQueue.main.async {
+            self.setFavoriteButton()
+          }
+        }
+      }
+  
     private var favoriteButton: UIBarButtonItem?
     
     init (item: FavoriteRepo){
@@ -98,19 +105,7 @@ class RepoDetailsController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        let isFavorited = favoritedRepos.contains(where: { repo in
-           item.id == repo
-        })
-    
-        let icon = isFavorited ? "heart.fill" : "heart"
-        
-        let action = isFavorited ? #selector(unFavoriteItem) : #selector(favoriteItem)
-      
-        favoriteButton = UIBarButtonItem(image: UIImage(systemName: icon), style: .plain, target: self, action: action)
-        favoriteButton?.tintColor = .black
-        navigationItem.rightBarButtonItem = favoriteButton
-        
+        setFavoriteButton()
     }
     
     //MARK: - Binder
@@ -121,12 +116,12 @@ class RepoDetailsController: UIViewController {
     
     @IBAction func favoriteItem() {
       saveFavorite(item: item)
-      changeFavoriteIcon(icon: "heart.fill")
+      //changeFavoriteIcon(icon: "heart.fill")
     }
     
     @IBAction func unFavoriteItem() {
         deleteFavorite()
-        changeFavoriteIcon(icon: "heart")
+        //changeFavoriteIcon(icon: "heart")
     }
     
     //MARK: - Helpers
@@ -160,7 +155,8 @@ class RepoDetailsController: UIViewController {
         ManagedObjectContext.shared.save(item: item) { result in
             switch result {
             case .Success:
-                print("sucesso")
+                print("sucesso em salvar")
+                fetchFavoritedRespos()
             case .Error(let error):
                 showAlertError(error)
             }
@@ -171,7 +167,8 @@ class RepoDetailsController: UIViewController {
         ManagedObjectContext.shared.delete(id: item.id) { result in
             switch result {
             case .Success:
-                print("Sucesso")
+                print("sucesso em deletar")
+                fetchFavoritedRespos()
             case .Error(let error):
                 showAlertError(error)
             }
@@ -202,5 +199,19 @@ class RepoDetailsController: UIViewController {
         
         present(alert, animated: true, completion: nil)
     }
+  
+  private func setFavoriteButton() {
+    let isFavorited = favoritedRepos.contains(where: { repo in
+       item.id == repo
+    })
+
+    let icon = isFavorited ? "heart.fill" : "heart"
+    
+    let action = isFavorited ? #selector(unFavoriteItem) : #selector(favoriteItem)
+  
+    favoriteButton = UIBarButtonItem(image: UIImage(systemName: icon), style: .plain, target: self, action: action)
+    favoriteButton?.tintColor = .black
+    navigationItem.rightBarButtonItem = favoriteButton
+  }
 
 }

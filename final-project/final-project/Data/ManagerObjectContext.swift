@@ -71,6 +71,7 @@ extension ManagedObjectContext: managedProtocol {
     func save(item: FavoriteRepo, onCompletion: (DataResult) -> Void) {
         do  {
             try saveData(item)
+            onCompletion(.Success)
         } catch {
             onCompletion(.Error("Erro ao salvar dados"))
         }
