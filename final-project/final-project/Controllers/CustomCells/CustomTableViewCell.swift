@@ -24,6 +24,7 @@ class CustomTableViewCell: UITableViewCell {
     lazy private var repoName: UILabel = {
         let repoName = UILabel()
         repoName.font = UIFont.systemFont(ofSize: 17)
+        
         return repoName
             
     }()
@@ -31,6 +32,11 @@ class CustomTableViewCell: UITableViewCell {
     lazy private var repoDescription: UILabel = {
        let repoDescription = UILabel()
         repoDescription.font = UIFont.systemFont(ofSize: 14)
+        repoDescription.numberOfLines = 0
+        
+        
+        
+//        repoDescription.backgroundColor = .blue
         
        return repoDescription
     }()
