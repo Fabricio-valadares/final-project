@@ -136,7 +136,6 @@ class RepoDetailsController: UIViewController {
 
         let topicsStack = UIStackView(arrangedSubviews: [topicAuthor,topicViewers,topicCreatedAt,topicLicense])
         topicsStack.axis = .vertical
-        topicsStack.spacing = 8
         view.addSubview(topicsStack)
         
         topicsStack.anchor(top: subTitle.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor,paddingTop: 16, paddingLeft: 16, paddingRight: 16)

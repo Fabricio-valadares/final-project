@@ -33,6 +33,7 @@ class HomeController: UIViewController {
         searchBar.searchBar.searchTextField.placeholder = "Search..."
         searchBar.searchBar.sizeToFit()
         searchBar.searchResultsUpdater = self
+        
         return searchBar
 
     }()
@@ -60,7 +61,9 @@ class HomeController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         configureTabBar()
+        
     }
 
     
@@ -133,10 +136,20 @@ extension HomeController:UITableViewDelegate,UITableViewDataSource {
         return 101
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let repoDetails = repos[indexPath.row]
+        //let repoDetails = repos[indexPath.row]
         
-        let repoDetailsController = RepoDetailsController(item: Repository(id: repoDetails.id, name: repoDetails.name, description: repoDetails.description ?? "", avatarURL: repoDetails.owner.avatarURL, createdAt: repoDetails.createdAt, watchersCount: repoDetails.watchersCount, login: repoDetails.owner.login, url: repoDetails.url, license: repoDetails.license?.name ?? "", authorName: repoDetails.owner.login))
-
+        let repoDetails:Item
+        
+        if searchBar.isActive && searchBar.searchBar.text != ""{
+            repoDetails = filteredRepos[indexPath.row]
+        }else{
+            repoDetails = repos[indexPath.row]
+        }
+        
+        let repoDetailsController = RepoDetailsController(item: Repository(id: repoDetails.id, name: repoDetails.name, description: repoDetails.description ?? "", avatarURL: repoDetails.owner.avatarURL, createdAt: repoDetails.createdAt, watchersCount: repoDetails.watchersCount, login: repoDetails.owner.login, url: repoDetails.htmlURL, license: repoDetails.license?.name ?? "", authorName: repoDetails.owner.login))
+        
+        //self.searchBar.isActive = false
+        //self.searchBar.searchBar.isHidden = true
         navigationController?.pushViewController(repoDetailsController, animated: true)
         
     }
@@ -162,5 +175,6 @@ extension HomeController: UISearchResultsUpdating {
         
         self.filteredRepos = filteredRepos
         self.tableView.reloadData()
+        
     }
 }

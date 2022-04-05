@@ -9,6 +9,7 @@ class DevelopersDetilsController: UIViewController, MFMailComposeViewControllerD
     private let developerLinkedin:String
     private let developerTwitter :String
     private let developerDescription : String
+    private let developerName:String
     
     init (developerPhoto:String ,developerName:String, developerPhone: String, developerEmail: String, developerLinkedin: String, developerTwitter: String, developerDescription: String){
         self.developerPhone = developerPhone
@@ -16,6 +17,7 @@ class DevelopersDetilsController: UIViewController, MFMailComposeViewControllerD
         self.developerLinkedin = developerLinkedin
         self.developerTwitter = developerTwitter
         self.developerDescription = developerDescription
+        self.developerName = developerName
         super.init(nibName: nil, bundle: nil)
         title = developerName
         let url = URL(string: developerPhoto)
@@ -108,7 +110,7 @@ class DevelopersDetilsController: UIViewController, MFMailComposeViewControllerD
     
     lazy var buttonLinkedin: UIButton = {
         buttonLinkedin = UIButton(type: .custom)
-        buttonLinkedin.setTitle(self.developerLinkedin, for: .normal)
+        buttonLinkedin.setTitle(self.developerName, for: .normal)
         buttonLinkedin.setTitleColor(UIColor.black, for: .normal)
         buttonLinkedin.backgroundColor = .white
         buttonLinkedin.isUserInteractionEnabled = true
