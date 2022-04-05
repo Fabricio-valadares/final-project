@@ -34,10 +34,6 @@ class CustomTableViewCell: UITableViewCell {
         repoDescription.font = UIFont.systemFont(ofSize: 14)
         repoDescription.numberOfLines = 0
         
-        
-        
-//        repoDescription.backgroundColor = .blue
-        
        return repoDescription
     }()
     
