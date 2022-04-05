@@ -87,7 +87,7 @@ class RepoDetailsController: UIViewController {
         hyperLink.textAlignment = .center
         hyperLink.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         hyperLink.linkTextAttributes = [
-            .foregroundColor: UIColor.blue,
+            .foregroundColor: UIColor.black,
             .underlineStyle: NSUnderlineStyle.single.rawValue
         ]
         return hyperLink

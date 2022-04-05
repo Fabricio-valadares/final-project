@@ -19,6 +19,7 @@
 		48C6CE2A27F281FC00FD7BBB /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C6CE2927F281FC00FD7BBB /* MainTabBar.swift */; };
 		48C6CE2C27F2835F00FD7BBB /* FavoritesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C6CE2B27F2835F00FD7BBB /* FavoritesController.swift */; };
 		48C6CE2E27F2836A00FD7BBB /* SquadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C6CE2D27F2836A00FD7BBB /* SquadController.swift */; };
+		4A620D9C27FBB5E40082899A /* Phone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A620D9B27FBB5E40082899A /* Phone.swift */; };
 		9F69A3F927ED32A6006517E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F69A3F827ED32A6006517E5 /* AppDelegate.swift */; };
 		9F69A3FB27ED32A6006517E5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F69A3FA27ED32A6006517E5 /* SceneDelegate.swift */; };
 		9F69A3FD27ED32A6006517E5 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F69A3FC27ED32A6006517E5 /* HomeController.swift */; };
@@ -42,6 +43,7 @@
 		48C6CE2927F281FC00FD7BBB /* MainTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
 		48C6CE2B27F2835F00FD7BBB /* FavoritesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesController.swift; sourceTree = "<group>"; };
 		48C6CE2D27F2836A00FD7BBB /* SquadController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquadController.swift; sourceTree = "<group>"; };
+		4A620D9B27FBB5E40082899A /* Phone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Phone.swift; sourceTree = "<group>"; };
 		9F69A3F527ED32A6006517E5 /* final-project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "final-project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F69A3F827ED32A6006517E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F69A3FA27ED32A6006517E5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 			children = (
 				349AC3D327F353A5002E19DD /* Extensions.swift */,
 				349AC3D727F3DB09002E19DD /* Utilities.swift */,
+				4A620D9B27FBB5E40082899A /* Phone.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 				48C6CE2A27F281FC00FD7BBB /* MainTabBar.swift in Sources */,
 				346891CC27ED3692001D45DB /* GitHub.swift in Sources */,
 				34F3D1CA27EE222F00B768A1 /* FetchGitHubProtocol.swift in Sources */,
+				4A620D9C27FBB5E40082899A /* Phone.swift in Sources */,
 				349AC3D627F39F65002E19DD /* Developers.swift in Sources */,
 				9FF6E16B27F2885A00820C26 /* DevelopersDetilsController.swift in Sources */,
 				34F3D1CC27EE26C300B768A1 /* CustomTableViewCell.swift in Sources */,
@@ -448,7 +452,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = WX97QMS6BT;
+				DEVELOPMENT_TEAM = 7J45X77JFB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "final-project/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -477,7 +481,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = WX97QMS6BT;
+				DEVELOPMENT_TEAM = 7J45X77JFB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "final-project/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

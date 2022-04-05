@@ -88,6 +88,7 @@ class DevelopersDetilsController: UIViewController, MFMailComposeViewControllerD
     }
     
     lazy var buttonTwitter: UIButton = {
+        
         buttonTwitter = UIButton(type: .custom)
         buttonTwitter.setTitle(self.developerTwitter, for: .normal)
         buttonTwitter.setTitleColor(UIColor.black, for: .normal)
