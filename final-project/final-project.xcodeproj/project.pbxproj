@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0D4CFED8F3041EAF5B7D2B76 /* Pods_final_project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0214F0762896CD751C69C75 /* Pods_final_project.framework */; };
+		2A3790F227FD01FC005BA933 /* RepoDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3790F127FD01FC005BA933 /* RepoDetailsViewModel.swift */; };
+		2A3790F427FD0286005BA933 /* RepoDetailsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3790F327FD0286005BA933 /* RepoDetailsDelegate.swift */; };
+		2A3790FA27FD0CBB005BA933 /* FavoritesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3790F927FD0CBB005BA933 /* FavoritesDelegate.swift */; };
+		2A3790FC27FD0CCF005BA933 /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3790FB27FD0CCF005BA933 /* FavoritesViewModel.swift */; };
 		2ADD1E8327F656F600AE7128 /* ManagerObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD1E8227F656F600AE7128 /* ManagerObjectContext.swift */; };
 		2ADD1E8527F658F000AE7128 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ADD1E8427F658F000AE7128 /* CoreData.framework */; };
 		2ADD1E8727F79FAA00AE7128 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD1E8627F79FAA00AE7128 /* Repository.swift */; };
@@ -35,6 +39,10 @@
 
 /* Begin PBXFileReference section */
 		1C97FB43670A09F0271FF125 /* Pods-final-project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-final-project.debug.xcconfig"; path = "Target Support Files/Pods-final-project/Pods-final-project.debug.xcconfig"; sourceTree = "<group>"; };
+		2A3790F127FD01FC005BA933 /* RepoDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoDetailsViewModel.swift; sourceTree = "<group>"; };
+		2A3790F327FD0286005BA933 /* RepoDetailsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoDetailsDelegate.swift; sourceTree = "<group>"; };
+		2A3790F927FD0CBB005BA933 /* FavoritesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesDelegate.swift; sourceTree = "<group>"; };
+		2A3790FB27FD0CCF005BA933 /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		2ADD1E8227F656F600AE7128 /* ManagerObjectContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerObjectContext.swift; sourceTree = "<group>"; };
 		2ADD1E8427F658F000AE7128 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		2ADD1E8627F79FAA00AE7128 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
@@ -77,6 +85,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A3790F027FD01D9005BA933 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2A3790F827FD0C91005BA933 /* Favorites */,
+				2A3790F627FD0C32005BA933 /* RepoDetails */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2A3790F627FD0C32005BA933 /* RepoDetails */ = {
+			isa = PBXGroup;
+			children = (
+				2A3790F327FD0286005BA933 /* RepoDetailsDelegate.swift */,
+				2A3790F127FD01FC005BA933 /* RepoDetailsViewModel.swift */,
+			);
+			path = RepoDetails;
+			sourceTree = "<group>";
+		};
+		2A3790F827FD0C91005BA933 /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				2A3790F927FD0CBB005BA933 /* FavoritesDelegate.swift */,
+				2A3790FB27FD0CCF005BA933 /* FavoritesViewModel.swift */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
 		2ADD1E8127F6566F00AE7128 /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +200,7 @@
 		9F69A3F727ED32A6006517E5 /* final-project */ = {
 			isa = PBXGroup;
 			children = (
+				2A3790F027FD01D9005BA933 /* ViewModel */,
 				349AC3D027F3530D002E19DD /* Utils */,
 				2ADD1E8127F6566F00AE7128 /* Data */,
 				48C6CE2827F281C200FD7BBB /* Controllers */,
@@ -317,6 +353,8 @@
 				349AC3CF27F28FA7002E19DD /* RepoDetailsController.swift in Sources */,
 				48C6CE2A27F281FC00FD7BBB /* MainTabBar.swift in Sources */,
 				2ADD1E8727F79FAA00AE7128 /* Repository.swift in Sources */,
+				2A3790F227FD01FC005BA933 /* RepoDetailsViewModel.swift in Sources */,
+				2A3790F427FD0286005BA933 /* RepoDetailsDelegate.swift in Sources */,
 				346891CC27ED3692001D45DB /* GitHub.swift in Sources */,
 				34F3D1CA27EE222F00B768A1 /* FetchGitHubProtocol.swift in Sources */,
 				349AC3D627F39F65002E19DD /* Developers.swift in Sources */,
@@ -326,8 +364,10 @@
 				9F69A3FD27ED32A6006517E5 /* HomeController.swift in Sources */,
 				9F69A3F927ED32A6006517E5 /* AppDelegate.swift in Sources */,
 				349AC3D827F3DB09002E19DD /* Utilities.swift in Sources */,
+				2A3790FA27FD0CBB005BA933 /* FavoritesDelegate.swift in Sources */,
 				9F69A40327ED32A6006517E5 /* final_project.xcdatamodeld in Sources */,
 				349AC3D427F353A5002E19DD /* Extensions.swift in Sources */,
+				2A3790FC27FD0CCF005BA933 /* FavoritesViewModel.swift in Sources */,
 				9F69A3FB27ED32A6006517E5 /* SceneDelegate.swift in Sources */,
 				2ADD1E8327F656F600AE7128 /* ManagerObjectContext.swift in Sources */,
 				48C6CE2C27F2835F00FD7BBB /* FavoritesController.swift in Sources */,

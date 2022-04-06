@@ -1,18 +1,10 @@
 import UIKit
 
 class FavoritesController: UIViewController {
+    
+    private let viewModel: FavoritesViewModel = FavoritesViewModel()
   
     //MARK: - Atributes
-    
-    private var repos = [Repository](){
-        didSet{
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-    }
-    
-       
     lazy var tableView : UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain )
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -25,19 +17,18 @@ class FavoritesController: UIViewController {
     }()
 
     //MARK: - Lifecycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
-        
-        
+        viewModel.delegate = self
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureTabBar()
         configureUI()
-        fetchRepos()
+        viewModel.fetchRepositories()
     }
 
     
@@ -50,42 +41,18 @@ class FavoritesController: UIViewController {
     private func configureTabBar(){
         title = "Favorites"
     }
-        
-    private func fetchRepos(){
-        self.repos = ManagedObjectContext.shared.list { result in
-            switch result {
-                case .Success:
-                    print("Sucesso")
-                case .Error(let error):
-                    print(error)
-            }
-        }
-
-    }
-    
-    private func deleteFavorite(id: Int) {
-        ManagedObjectContext.shared.delete(id: id) { result in
-            switch result {
-            case .Success:
-                print("Sucesso")
-            case .Error(let error):
-                print(error)
-            }
-        }
-    }
 }
 
 //MARK: - Tableview configuration
-
 extension FavoritesController:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return repos.count
+        return viewModel.getRepositoriesCount()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell  = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as? CustomTableViewCell else {return UITableViewCell()}
         
-        let repo = repos[indexPath.row]
+        let repo = viewModel.repositories[indexPath.row]
         cell.accessoryType = .disclosureIndicator
         cell.setup(name: repo.name, description: repo.login, imageUrl: repo.avatarURL)
         
@@ -96,12 +63,30 @@ extension FavoritesController:UITableViewDelegate,UITableViewDataSource {
         return 101
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let repoDetails = repos[indexPath.row]
-        let repoDetailsController = RepoDetailsController(item: repoDetails)
-        navigationController?.pushViewController(repoDetailsController  , animated: true)
+    private func showAlertError(_ message: String) {
+        let alert = UIAlertController(title: "Erro", message: message, preferredStyle: .alert)
         
+        alert.addAction(UIAlertAction(title: "Erro", style: .default, handler: { action in
+                    //Fazer algo se necessario
+                }))
+        
+        present(alert, animated: true, completion: nil)
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let repoDetails = viewModel.repositories[indexPath.row]
+        let repoDetailsController = RepoDetailsController(item: repoDetails)
+        navigationController?.pushViewController(repoDetailsController  , animated: true)
+    }
+}
+
+extension FavoritesController: FavoritesDelegate {
+    func fetchFavoritesSuccess() {
+        tableView.reloadData()
+    }
+    
+    func fetchFavoritesErro(_ error: String) {
+        showAlertError(error)
+    }
 }
 
