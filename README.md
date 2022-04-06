@@ -12,6 +12,11 @@ Dentro da raiz do projeto rode esse comando em seu terminal.
 
 - `pod install`
 
+## Biblioteca usadas
+
+- `Kingfisher`
+- `Alamofire`
+
 ## Desenvolvedores do projeto.
 
 <table>
