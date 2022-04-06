@@ -37,14 +37,14 @@ class SquadController: UIViewController {
                 description: "texto de exemplo"
             ),
             Developers(
-                name: "Miller César",
-                occupation: "Ocupação",
-                phone: "(00)00000-0000",
-                email: "funalo@mail.com",
-                linkedin: "https://dominio.com.br",
-                twitter: "user123",
+                name: "Miller césar de Olivera",
+                occupation: "Frontend Developer",
+                phone: "(11)983177098",
+                email: "miller00315@gmail.com",
+                linkedin: "https://www.linkedin.com/in/millercesaroliveira/",
+                twitter: "",
                 profile: "https://avatars.githubusercontent.com/u/20051554?v=4",
-                description: "texto de exemplo"
+                description: "Formado em sistemas de informacao, mineiro de Lavras sul de Minas Gerais, sou apaixonado por tecnologia e amo a área de desenvolvimento."
             ),
             Developers(
                 name: "Fabricio Valadares",
@@ -67,7 +67,7 @@ class SquadController: UIViewController {
             ),
             Developers(
                 name: "Melquias Rosa Ribeiro",
-                occupation: "Ocupação",
+                occupation: "fullstack developer",
                 phone: "(98)981877537",
                 email: "funalo@mail.com",
                 linkedin: "https://www.linkedin.com/in/melquias-ribeiro-a10639182/",
