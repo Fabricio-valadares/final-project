@@ -211,7 +211,7 @@ class DevelopersDetilsController: UIViewController, MFMailComposeViewControllerD
         if let url = URL(string: url) {
             
             let config = SFSafariViewController.Configuration()
-            config.entersReaderIfAvailable
+           
             
             let DevelopersDetilsController = SFSafariViewController(url: url, configuration: config)
             DevelopersDetilsController.delegate = self
@@ -225,11 +225,16 @@ class DevelopersDetilsController: UIViewController, MFMailComposeViewControllerD
     private func alert(flag: Bool) {
         
         if flag == false {
-        var dialogMessage = UIAlertController(title: "Erro", message: "Não é possível executar essa ação no simulador", preferredStyle: .alert)
-        let noPossibleCall = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
-        })
-        dialogMessage.addAction(noPossibleCall)
-        self.present(dialogMessage, animated: true, completion: nil)}
+        
+            let dialogMessage = UIAlertController(title: "Erro", message: "Não é possível executar essa ação no simulador", preferredStyle: .alert)
+            
+            let noPossibleCall = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+            })
+            
+            dialogMessage.addAction(noPossibleCall)
+        
+            self.present(dialogMessage, animated: true, completion: nil)
+        }
     }
 }
 

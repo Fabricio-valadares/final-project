@@ -113,6 +113,8 @@ extension ManagedObjectContext: managedListProtocol {
             onCompletion(.Error(error.localizedDescription))
         }
         
+        onCompletion(.Success)
+        
         return itemList
     }
 }

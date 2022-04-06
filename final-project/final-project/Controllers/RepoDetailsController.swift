@@ -7,24 +7,22 @@ class RepoDetailsController: UIViewController {
     
     //MARK: - Properties
 
-    private let item: Repository
-    private lazy var favoritedRepos = [Int]() {
-      didSet {
-          DispatchQueue.main.async {
-            self.setFavoriteButton()
-          }
-        }
-      }
+    private let viewModel: RepoDetailsViewModel = RepoDetailsViewModel()
   
     private var favoriteButton: UIBarButtonItem?
     
     init (item: Repository){
-        self.item = item
         super.init(nibName: nil, bundle: nil)
-        title = item.name
-        let url = URL(string: item.avatarURL)
+        
+        viewModel.repository = item
+        
+        viewModel.delegate = self
+        
+        title = viewModel.repository?.name ?? ""
+        
+        let url = URL(string: viewModel.repository?.avatarURL ?? "")
+        
         imageRepoView.kf.setImage(with: url)
-
     }
     
     required init?(coder: NSCoder) {
@@ -54,29 +52,29 @@ class RepoDetailsController: UIViewController {
     }()
     
     lazy var topicAuthor:UIView = {
-        let userOwner = Utilities().createTopicItem(icon: "person.crop.square", key: "Autor: ", value: item.authorName)
+        let userOwner = Utilities().createTopicItem(icon: "person.crop.square", key: "Autor: ", value: viewModel.repository?.authorName ?? "")
         return userOwner
     }()
     
     lazy var topicViewers:UIView = {
-        let userOwner = Utilities().createTopicItem(icon: "eye", key: "Contagem de Observadores: ", value: "\(item.watchersCount)")
+        let userOwner = Utilities().createTopicItem(icon: "eye", key: "Contagem de Observadores: ", value: "\(viewModel.repository?.watchersCount ?? 0)")
         return userOwner
     }()
     
     lazy var topicCreatedAt:UIView = {
-        let userOwner = Utilities().createTopicItem(icon: "alarm.fill", key: "Data de criação: ", value: item.createdAt)
+        let userOwner = Utilities().createTopicItem(icon: "alarm.fill", key: "Data de criação: ", value: viewModel.repository?.createdAt ?? "")
         return userOwner
     }()
     
     lazy var topicLicense:UIView = {
-        let userOwner = Utilities().createTopicItem(icon: "globe", key: "Licença: ", value: item.license)
+        let userOwner = Utilities().createTopicItem(icon: "globe", key: "Licença: ", value: viewModel.repository?.license ?? "")
         return userOwner
     }()
     
     lazy var hyperLinkTextView: UITextView = {
         let hyperLink = UITextView()
         let atributoString = NSMutableAttributedString(string: "Link do Repositorio")
-        let url = URL(string: item.url)!
+        let url = URL(string: viewModel.repository?.url ?? "")!
         atributoString.setAttributes([.link: url], range: NSMakeRange(0, 19))
         hyperLink.dataDetectorTypes = .link
         hyperLink.isEditable = false
@@ -93,11 +91,10 @@ class RepoDetailsController: UIViewController {
     }()
 
     // MARK: - Lifecycle
-
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        fetchFavoritedRespos()
+        viewModel.getMappedToIdFavoritedRepositories()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -105,20 +102,13 @@ class RepoDetailsController: UIViewController {
         setFavoriteButton()
     }
     
-    //MARK: - Binder
-  
-    func changeFavoriteIcon(icon: String) {
-      favoriteButton?.image = UIImage(systemName: icon)
-    }
-    
+    //MARK: - Binders
     @IBAction func favoriteItem() {
-      saveFavorite(item: item)
-      //changeFavoriteIcon(icon: "heart.fill")
+        viewModel.favoriteItem()
     }
     
     @IBAction func unFavoriteItem() {
-        deleteFavorite()
-        //changeFavoriteIcon(icon: "heart")
+        viewModel.unfavoriteItem()
     }
     
     //MARK: - Helpers
@@ -145,47 +135,7 @@ class RepoDetailsController: UIViewController {
         hyperLinkTextView.anchor(top:topicsStack.bottomAnchor, left: view.leftAnchor,bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor,paddingTop: 50)
         
   }
-    
-    private func saveFavorite(item: Repository) {
-        
-        ManagedObjectContext.shared.save(item: item) { result in
-            switch result {
-            case .Success:
-                print("sucesso em salvar")
-                fetchFavoritedRespos()
-            case .Error(let error):
-                showAlertError(error)
-            }
-        }
-    }
-    
-    private func deleteFavorite() {
-        ManagedObjectContext.shared.delete(id: item.id) { result in
-            switch result {
-            case .Success:
-                print("sucesso em deletar")
-                fetchFavoritedRespos()
-            case .Error(let error):
-                showAlertError(error)
-            }
-        }
-    }
-    
-    private func fetchFavoritedRespos() {
-        let favorites = ManagedObjectContext.shared.list { result in
-            switch result {
-                case .Success:
-                    print("Sucesso")
-                case .Error(let error):
-                    showAlertError(error)
-                }
-        }
-        
-        self.favoritedRepos = favorites.map({ item in
-            item.id
-        })
-    }
-    
+
     private func showAlertError(_ message: String) {
         let alert = UIAlertController(title: "Erro", message: message, preferredStyle: .alert)
         
@@ -196,18 +146,26 @@ class RepoDetailsController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
   
-  private func setFavoriteButton() {
-    let isFavorited = favoritedRepos.contains(where: { repo in
-       item.id == repo
-    })
+    private func setFavoriteButton() {
+          let icon = viewModel.isFavorited ? "heart.fill" : "heart"
+        
+          let action = viewModel.isFavorited ? #selector(unFavoriteItem) : #selector(favoriteItem)
+      
+          favoriteButton = UIBarButtonItem(image: UIImage(systemName: icon), style: .plain, target: self, action: action)
+          
+          favoriteButton?.tintColor = .black
+        
+          navigationItem.rightBarButtonItem = favoriteButton
+    }
 
-    let icon = isFavorited ? "heart.fill" : "heart"
+}
+
+extension RepoDetailsController: RepoDetailsDelegate {
+    func favoriteUpdateFavorite() {
+        setFavoriteButton()
+    }
     
-    let action = isFavorited ? #selector(unFavoriteItem) : #selector(favoriteItem)
-  
-    favoriteButton = UIBarButtonItem(image: UIImage(systemName: icon), style: .plain, target: self, action: action)
-    favoriteButton?.tintColor = .black
-    navigationItem.rightBarButtonItem = favoriteButton
-  }
-
+    func favoriteUpdateFavoriteError(_ error: String) {
+        showAlertError(error)
+    }
 }
