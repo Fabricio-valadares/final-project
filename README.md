@@ -12,7 +12,7 @@ Dentro da raiz do projeto rode esse comando em seu terminal.
 
 - `pod install`
 
-## Desenvolvedor do projeto.
+## Desenvolvedores do projeto.
 
 <table>
   <tr>
