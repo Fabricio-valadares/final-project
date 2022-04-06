@@ -8,7 +8,7 @@ Portanto, aqui você poderá ver as principais bibliotecas do mundo swift.
 
 ## Instalação
 
-Dentro da raiz do projeto rode esse comando em seu terminal. 
+Dentro da raiz do projeto execute esse comando em seu terminal.
 
 - `pod install`
 
