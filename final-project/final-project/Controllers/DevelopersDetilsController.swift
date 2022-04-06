@@ -52,8 +52,9 @@ class DevelopersDetilsController: UIViewController, MFMailComposeViewControllerD
     }()
     
     lazy var buttonPhone: UIButton = {
-        buttonPhone = UIButton(type: .custom)
+       let buttonPhone = UIButton(type: .custom)
         buttonPhone.setTitle(self.developerPhone, for: .normal)
+        buttonPhone.titleLabel?.adjustsFontSizeToFitWidth = true
         buttonPhone.setTitleColor(UIColor.black, for: .normal)
         buttonPhone.backgroundColor = .white
         buttonPhone.isUserInteractionEnabled = true
@@ -72,7 +73,8 @@ class DevelopersDetilsController: UIViewController, MFMailComposeViewControllerD
     }
     
     lazy var buttonEmail: UIButton = {
-        buttonEmail = UIButton(type: .custom)
+        let buttonEmail = UIButton(type: .custom)
+        buttonEmail.titleLabel?.adjustsFontSizeToFitWidth = true
         buttonEmail.setTitle(self.developerEmail, for: .normal)
         buttonEmail.setTitleColor(UIColor.black, for: .normal)
         buttonEmail.backgroundColor = .white
@@ -90,18 +92,22 @@ class DevelopersDetilsController: UIViewController, MFMailComposeViewControllerD
     }
     
     lazy var buttonTwitter: UIButton = {
-        
-        buttonTwitter = UIButton(type: .custom)
-        buttonTwitter.setTitle(self.developerTwitter, for: .normal)
+       let  buttonTwitter = UIButton(type: .custom)
+        var nameUser = validate(developerTwitter)
+        buttonTwitter.titleLabel?.adjustsFontSizeToFitWidth = true
+        buttonTwitter.titleLabel?.numberOfLines = 2
+        buttonTwitter.setTitle(nameUser, for: .normal)
         buttonTwitter.setTitleColor(UIColor.black, for: .normal)
         buttonTwitter.backgroundColor = .white
         buttonTwitter.isUserInteractionEnabled = true
         buttonTwitter.addTarget(self, action:  #selector(buttonActionTwitter), for: .touchUpInside)
+        
    
    
     return buttonTwitter
     
 }()
+
     
     @objc func buttonActionTwitter(sender: UIButton!) {
       callSafari(developerTwitter)
@@ -109,7 +115,7 @@ class DevelopersDetilsController: UIViewController, MFMailComposeViewControllerD
     }
     
     lazy var buttonLinkedin: UIButton = {
-        buttonLinkedin = UIButton(type: .custom)
+        let buttonLinkedin = UIButton(type: .custom)
         buttonLinkedin.setTitle(self.developerName, for: .normal)
         buttonLinkedin.setTitleColor(UIColor.black, for: .normal)
         buttonLinkedin.backgroundColor = .white
@@ -195,7 +201,7 @@ class DevelopersDetilsController: UIViewController, MFMailComposeViewControllerD
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
             mail.setToRecipients([email])
-            mail.setMessageBody("<p>Obrigada Doug e Idwall!!!</p>", isHTML: true)
+            mail.setMessageBody("<p>Obrigada Doug, Idwall e Gama!!!</p>", isHTML: true)
 
             present(mail, animated: true)
         } else {
@@ -222,6 +228,18 @@ class DevelopersDetilsController: UIViewController, MFMailComposeViewControllerD
         }
     }
     
+    // MARK: - Validation url
+    
+    func validate(_ urlString: String) -> String {
+            if let url = URL(string: developerTwitter),
+               url.isFileURL || (url.host != nil && url.scheme != nil) {
+                let user = urlString.split(separator: "/")
+                return "@\(user[2])"
+            }
+            return urlString
+        }
+    
+    
     private func alert(flag: Bool) {
         
         if flag == false {
@@ -231,7 +249,19 @@ class DevelopersDetilsController: UIViewController, MFMailComposeViewControllerD
         dialogMessage.addAction(noPossibleCall)
         self.present(dialogMessage, animated: true, completion: nil)}
     }
+    
+    private func alertLink(flag: Bool) {
+        
+        if flag == false {
+        var dialogMessage = UIAlertController(title: "Erro", message: "URL Inváilida", preferredStyle: .alert)
+        let noPossibleCall = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+        })
+        dialogMessage.addAction(noPossibleCall)
+        self.present(dialogMessage, animated: true, completion: nil)}
+    }
 }
+
+// MARK: - Extension
 
 extension DevelopersDetilsController: SFSafariViewControllerDelegate {
     

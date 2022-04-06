@@ -63,7 +63,10 @@ class Utilities {
             
             values = value
             topicItem.addSubview(button)
-            button.anchor(left: label.rightAnchor, paddingLeft: 4, paddingBottom: 0)
+            button.anchor(left: label.rightAnchor, paddingLeft: 4, paddingBottom: 10)
+            button.titleLabel?.lineBreakMode = .byClipping
+            button.titleLabel?.baselineAdjustment = .alignBaselines
+            
             
             return topicItem
         }
