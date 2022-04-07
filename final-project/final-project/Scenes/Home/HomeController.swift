@@ -147,7 +147,6 @@ extension HomeController: UISearchResultsUpdating {
         guard let searchedText = searchController.searchBar.text else {
             return
         }
-        
         viewModel.filterRepositories(searchedText)
         
     }
