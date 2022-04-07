@@ -31,7 +31,6 @@ class DevelopersDetailsController: UIViewController, MFMailComposeViewController
         return topicLinkedin
     }()
     
-    
     lazy var imageRepoView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(systemName: "stop")
@@ -61,7 +60,6 @@ class DevelopersDetailsController: UIViewController, MFMailComposeViewController
    
    
         return buttonPhone
-    
     }()
     
     lazy var buttonLinkedin: UIButton = {
@@ -74,7 +72,6 @@ class DevelopersDetailsController: UIViewController, MFMailComposeViewController
         buttonLinkedin.addTarget(self, action:  #selector(buttonActionLinkedin), for: .touchUpInside)
    
         return buttonLinkedin
-    
     }()
         
     lazy var buttonEmail: UIButton = {
@@ -86,7 +83,6 @@ class DevelopersDetailsController: UIViewController, MFMailComposeViewController
         buttonEmail.addTarget(self, action:  #selector(buttonActionEmail), for: .touchUpInside)
    
         return buttonEmail
-    
     }()
     
     lazy var buttonTwitter: UIButton = {

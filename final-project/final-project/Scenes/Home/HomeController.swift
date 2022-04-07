@@ -148,7 +148,6 @@ extension HomeController: UISearchResultsUpdating {
             return
         }
         viewModel.filterRepositories(searchedText)
-        
     }
 }
 
@@ -158,7 +157,6 @@ extension HomeController: HomeDelegate {
     }
     
     func updateTableView() {
-        print("atualizando table view")
         tableView.reloadData()
     }
 }

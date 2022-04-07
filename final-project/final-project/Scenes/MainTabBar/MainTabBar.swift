@@ -25,5 +25,4 @@ class MainTabBar: UITabBarController {
     nav.tabBarItem.image = UIImage(systemName: image)
     return nav
   }
-  
 }
