@@ -13,13 +13,13 @@ class Phone {
         
     fileprivate let application = UIApplication.shared
         
-    func btnCallClick (_ tel: String) -> Bool {
+    func callPhone (_ tel: String) -> Bool {
             
         let flag = self.openPhone(tel)
         return flag
     }
         
-        
+    /// If can open url return true else return false
     private func openPhone(_ tel: String) -> Bool  {
         if let phoneURL = URL(string: "tel://\(tel)"){
             if application.canOpenURL(phoneURL) {
