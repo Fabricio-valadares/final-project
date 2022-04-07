@@ -46,7 +46,7 @@ class DevelopersDetailsController: UIViewController, MFMailComposeViewController
         subTitle.textColor = .black
         subTitle.numberOfLines = 0
         subTitle.font = UIFont.systemFont(ofSize: 17)
-        subTitle.text = viewModel.developer?.name ?? ""
+        subTitle.text = viewModel.developer?.description ?? ""
         return subTitle
     }()
     
@@ -133,11 +133,11 @@ class DevelopersDetailsController: UIViewController, MFMailComposeViewController
     }
     
     @objc func buttonActionTwitter(sender: UIButton!) {
-        viewModel.openUrl(url: viewModel.developer?.twitter ?? "")
+        viewModel.openUrl(url: viewModel.developer?.twitterUrl ?? "")
     }
         
     @objc func buttonActionLinkedin(sender: UIButton!) {
-        viewModel.openUrl(url: viewModel.developer?.linkedin ?? "")
+        viewModel.openUrl(url: viewModel.developer?.linkedinURL ?? "")
     }
     
     //MARK: - Helpers

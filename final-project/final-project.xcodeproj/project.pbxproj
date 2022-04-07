@@ -213,7 +213,7 @@
 		2A37912827FE5722005BA933 /* DevelopersDetails */ = {
 			isa = PBXGroup;
 			children = (
-				2A37913327FE661D005BA933 /* New Group */,
+				2A37913327FE661D005BA933 /* CustomCells */,
 				9FF6E16A27F2885A00820C26 /* DevelopersDetailsController.swift */,
 			);
 			name = DevelopersDetails;
@@ -236,12 +236,12 @@
 			path = CustomCells;
 			sourceTree = "<group>";
 		};
-		2A37913327FE661D005BA933 /* New Group */ = {
+		2A37913327FE661D005BA933 /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
 				2A37912F27FE65D1005BA933 /* CustomTableViewUserDevelopersCell.swift */,
 			);
-			path = "New Group";
+			path = CustomCells;
 			sourceTree = "<group>";
 		};
 		2ADD1E8127F6566F00AE7128 /* Data */ = {
