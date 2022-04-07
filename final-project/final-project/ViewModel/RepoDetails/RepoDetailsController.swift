@@ -157,7 +157,6 @@ class RepoDetailsController: UIViewController {
         
           navigationItem.rightBarButtonItem = favoriteButton
     }
-
 }
 
 extension RepoDetailsController: RepoDetailsDelegate {
