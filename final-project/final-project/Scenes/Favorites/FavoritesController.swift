@@ -21,7 +21,6 @@ class FavoritesController: UIViewController {
         super.viewDidLoad()
         view.addSubview(tableView)
         viewModel.delegate = self
-    
     }
     
     override func viewWillAppear(_ animated: Bool) {

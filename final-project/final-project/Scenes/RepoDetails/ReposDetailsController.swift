@@ -6,32 +6,14 @@ import SwiftUI
 class RepoDetailsController: UIViewController {
     
     //MARK: - Properties
+    var safeArea: UILayoutGuide!
+    
+    static let identifier = "RepoViewCell"
 
     private let viewModel: RepoDetailsViewModel = RepoDetailsViewModel()
   
     private var favoriteButton: UIBarButtonItem?
     
-    init (item: Repository){
-        super.init(nibName: nil, bundle: nil)
-        
-        viewModel.repository = item
-        
-        viewModel.delegate = self
-        
-        title = viewModel.repository?.name ?? ""
-        
-        let url = URL(string: viewModel.repository?.avatarURL ?? "")
-        
-        imageRepoView.kf.setImage(with: url)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    var safeArea: UILayoutGuide!
-    static let identifier = "RepoViewCell"
-           
     lazy var imageRepoView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(systemName: "stop")
@@ -90,6 +72,25 @@ class RepoDetailsController: UIViewController {
 
     }()
 
+    
+    init (item: Repository){
+        super.init(nibName: nil, bundle: nil)
+        
+        viewModel.repository = item
+        
+        viewModel.delegate = self
+        
+        title = viewModel.repository?.name ?? ""
+        
+        let url = URL(string: viewModel.repository?.avatarURL ?? "")
+        
+        imageRepoView.kf.setImage(with: url)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,7 +113,6 @@ class RepoDetailsController: UIViewController {
     }
     
     //MARK: - Helpers
-    
     func configureUI(){
         safeArea = view.layoutMarginsGuide
         view.backgroundColor = .white
@@ -157,7 +157,6 @@ class RepoDetailsController: UIViewController {
         
           navigationItem.rightBarButtonItem = favoriteButton
     }
-
 }
 
 extension RepoDetailsController: RepoDetailsDelegate {

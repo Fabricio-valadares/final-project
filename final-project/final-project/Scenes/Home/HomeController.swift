@@ -3,18 +3,7 @@ import SwiftUI
 
 class HomeController: UIViewController {
     
-    //MARK: - Atributes
-    
-    private var repos = [Item](){
-        didSet{
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-    }
-    private var filteredRepos:[Item] = []
-       
-    private var isAsc:Bool = false
+    public var viewModel: HomeViewModel = HomeViewModel()
     
     lazy var orderButton:UIBarButtonItem = {
         orderButton = UIBarButtonItem()
@@ -51,22 +40,27 @@ class HomeController: UIViewController {
     }()
 
     //MARK: - Lifecycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
+        
+        viewModel.delegate = self
+        
         configureUI()
-        fetchRepos()
+        viewModel.fetchRepositories()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         configureTabBar()
-        
+    }
+    
+    //MARK: - Binders
+    @objc func handleOrdenates(){
+        viewModel.orderRepositories()
     }
 
-    
     //MARK: - Helpers
 
     private func configureUI(){
@@ -78,72 +72,58 @@ class HomeController: UIViewController {
         navigationItem.rightBarButtonItem = orderButton
     }
     
-    @objc func handleOrdenates(){
-        if(isAsc){
-            repos.sort {$0.name.lowercased() < $1.name.lowercased()}
-            isAsc = false
-        }else {
-            repos.sort {$0.name.lowercased() > $1.name.lowercased()}
-            isAsc = true
-        }
+    private func showAlertError(_ message: String) {
+        let alert = UIAlertController(title: "Erro", message: message, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Erro", style: .default, handler: { action in
+                    //Fazer algo se necessario
+                }))
+        
+        present(alert, animated: true, completion: nil)
     }
-    
-    private func fetchRepos(){
-        let service = FetchGitHubServices()
-            service.fetchAll{
-                result in
-                switch result{
-                    case .success(let repos):
-                        self.repos = repos
-                    case .failure(let error):
-                        print(error.localizedDescription)
-                }
-        }
-    }
-
-  }
+}
 
 //MARK: - Tableview configuration
 
 extension HomeController:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchBar.isActive && searchBar.searchBar.text != ""{
-            return filteredRepos.count
+            return viewModel.filteredRepos.count
         }
         
-        return repos.count
+        return viewModel.repositories.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell  = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as? CustomTableViewCell else {return UITableViewCell()}
         
-        let repo:Item
+        let repo:Item?
         
         if searchBar.isActive && searchBar.searchBar.text != ""{
-            repo = filteredRepos[indexPath.row]
+            repo = viewModel.filteredRepos[indexPath.row]
         }else{
-            repo = repos[indexPath.row]
+            repo = viewModel.repositories[indexPath.row]
         }
-
-     
         
         cell.accessoryType = .disclosureIndicator
-        cell.setup(name: repo.name, description: repo.owner.login, imageUrl: repo.owner.avatarURL)
+        cell.setup(name: repo?.name ?? "", description: repo?.owner.login ?? "", imageUrl: repo?.owner.avatarURL ?? "")
         
         return cell
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 101
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //let repoDetails = repos[indexPath.row]
         
         let repoDetails:Item
         
         if searchBar.isActive && searchBar.searchBar.text != ""{
-            repoDetails = filteredRepos[indexPath.row]
+            repoDetails = viewModel.filteredRepos[indexPath.row]
         }else{
-            repoDetails = repos[indexPath.row]
+            repoDetails = viewModel.repositories[indexPath.row]
         }
         
         let repoDetailsController = RepoDetailsController(item: Repository(id: repoDetails.id, name: repoDetails.name, description: repoDetails.description ?? "", avatarURL: repoDetails.owner.avatarURL, createdAt: repoDetails.createdAt, watchersCount: repoDetails.watchersCount, login: repoDetails.owner.login, url: repoDetails.htmlURL, license: repoDetails.license?.name ?? "", authorName: repoDetails.owner.login))
@@ -157,7 +137,6 @@ extension HomeController:UITableViewDelegate,UITableViewDataSource {
 }
 
 //MARK: - Search configuration
-
 extension HomeController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         
@@ -168,13 +147,16 @@ extension HomeController: UISearchResultsUpdating {
         guard let searchedText = searchController.searchBar.text else {
             return
         }
+        viewModel.filterRepositories(searchedText)
+    }
+}
 
-       let filteredRepos = repos.filter{ repo in
-           return repo.name.lowercased().contains(searchedText.lowercased())
-        }
-        
-        self.filteredRepos = filteredRepos
-        self.tableView.reloadData()
-        
+extension HomeController: HomeDelegate {
+    func fetchRepositoriesError(_ error: String) {
+        showAlertError(error)
+    }
+    
+    func updateTableView() {
+        tableView.reloadData()
     }
 }

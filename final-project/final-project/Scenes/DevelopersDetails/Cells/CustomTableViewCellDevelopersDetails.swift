@@ -75,7 +75,6 @@ class UserDeveloperTableViewCell: UITableViewCell {
             stackVertical.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
         ])
         
-        
         addSubview(iconView)
         
         NSLayoutConstraint.activate([
@@ -86,7 +85,6 @@ class UserDeveloperTableViewCell: UITableViewCell {
             iconView.leadingAnchor.constraint(equalTo: stackVertical.trailingAnchor,  constant: 16),
             iconView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
         ])
-        
         
         stackVertical.addArrangedSubview(nameDeveloper)
         stackVertical.addArrangedSubview(textOccupation)

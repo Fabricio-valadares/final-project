@@ -55,8 +55,6 @@ class CustomTableViewCell: UITableViewCell {
         addSubview(textContiner)
         
         textContiner.centerY(inView: contentView,leftAnchor: repoimage.rightAnchor,paddingLeft: 15)
-        
-        
     }
     
     func setup(name:String,description:String, imageUrl:String){
