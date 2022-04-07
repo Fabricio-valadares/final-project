@@ -28,7 +28,7 @@ class SquadController: UIViewController {
         users = [
             Developers(
                 name: "Pamella Lima",
-                occupation: "Ocupação",
+                occupation: "Analista de Teste",
                 phone: "(83)99985-3998",
                 email: "pamellavsl@gmail.com",
                 linkedin: "https://www.linkedin.com/in/pamella-lima-91a4ab1b4/",
@@ -67,7 +67,7 @@ class SquadController: UIViewController {
             ),
             Developers(
                 name: "Melquias Rosa Ribeiro",
-                occupation: "fullstack developer",
+                occupation: "Fullstack Developer",
                 phone: "(98)981877537",
                 email: "funalo@mail.com",
                 linkedin: "https://www.linkedin.com/in/melquias-ribeiro-a10639182/",
@@ -77,7 +77,7 @@ class SquadController: UIViewController {
             ),
             Developers(
                 name: "Felipe Brigagão",
-                occupation: "Ocupação",
+                occupation: "IOS App Developer na Apple\nDeveloper Academy",
                 phone: "(61)99460-5930",
                 email: "felipe.brigagao@icloud.com",
                 linkedin: "https://www.linkedin.com/in/felipebrigagaoalmeida/",
