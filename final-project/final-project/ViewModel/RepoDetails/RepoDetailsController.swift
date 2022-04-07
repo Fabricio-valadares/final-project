@@ -113,7 +113,6 @@ class RepoDetailsController: UIViewController {
     }
     
     //MARK: - Helpers
-    
     func configureUI(){
         safeArea = view.layoutMarginsGuide
         view.backgroundColor = .white

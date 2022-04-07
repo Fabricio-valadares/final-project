@@ -111,7 +111,6 @@ class DevelopersDetailsController: UIViewController, MFMailComposeViewController
     }
     
     // MARK: - Lifecycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
